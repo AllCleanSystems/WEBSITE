@@ -1,0 +1,11 @@
+Catalog Item ID,Item Name,Service Type,Item Category,Description,Base Price,Unit Type,Default Qty,Active,Upsell,Sort Order
+CAT-001,House Wash Base,House Wash,Core,Standard exterior house wash service,250,Job,1,true,false,10
+CAT-002,Roof Cleaning Base,Roof Cleaning,Core,Soft wash roof cleaning service,450,Job,1,true,false,10
+CAT-003,Window Cleaning Exterior,Window Cleaning,Core,Exterior window cleaning,8,Each,10,true,false,10
+CAT-004,Gutter Cleaning Base,Gutter Cleaning,Core,Gutter cleaning service,175,Job,1,true,false,10
+CAT-005,Pressure Washing Driveway,Pressure Washing,Core,Driveway pressure washing,0.18,Sq Ft,500,true,false,10
+CAT-006,Commercial Wash Base,Commercial Cleaning,Core,Commercial exterior cleaning service,650,Job,1,true,false,10
+CAT-007,Screen Cleaning Add-On,Window Cleaning,Add-On,Screen cleaning add-on,3,Each,10,true,false,20
+CAT-008,Gutter Brightening Upsell,Gutter Cleaning,Upsell,Gutter brightening service,125,Job,1,true,true,30
+CAT-009,Patio Washing Add-On,Pressure Washing,Add-On,Patio or porch washing add-on,0.20,Sq Ft,200,true,false,20
+CAT-010,Premium Detergent Upsell,House Wash,Upsell,Premium detergent and stain treatment,45,Job,1,true,true,30

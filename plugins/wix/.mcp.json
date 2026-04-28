@@ -1,0 +1,14 @@
+﻿{
+  "mcpServers": {
+    "wix-docs": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch"
+      ],
+      "env": {
+        "ALLOWED_ORIGINS": "https://dev.wix.com,https://www.wix.com,https://www.wixapis.com"
+      }
+    }
+  }
+}

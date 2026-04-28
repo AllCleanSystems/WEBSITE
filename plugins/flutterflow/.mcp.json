@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "flutterflow-docs": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch"
+      ],
+      "env": {
+        "ALLOWED_ORIGINS": "https://docs.flutterflow.io,https://api.flutterflow.io,https://api-enterprise-india.flutterflow.io,https://api-enterprise-apac.flutterflow.io,https://api-enterprise-us-central.flutterflow.io,https://api-enterprise-europe.flutterflow.io,https://flutterflow.io"
+      }
+    }
+  }
+}

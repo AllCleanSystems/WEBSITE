@@ -1,0 +1,52 @@
+{
+  "name": "flutterflow",
+  "version": "0.1.0",
+  "description": "Codex plugin for FlutterFlow planning, API integration, and production-readiness workflows.",
+  "author": {
+    "name": "All Clean Solutions",
+    "email": "Jveal@allcleansolutionsbismarck.com",
+    "url": "https://app.flutterflow.io/project/a-c-s-control-center-6m0kfm?tab=widgetTree&page=Homepage"
+  },
+  "homepage": "https://app.flutterflow.io/project/a-c-s-control-center-6m0kfm?tab=widgetTree&page=Homepage",
+  "repository": "https://github.com/AllCleanSystems/acs-ai-backend2",
+  "license": "MIT",
+  "keywords": [
+    "flutterflow",
+    "low-code",
+    "mobile-app",
+    "api-integration",
+    "firebase"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks.json",
+  "mcpServers": "./.mcp.json",
+  "apps": "./.app.json",
+  "interface": {
+    "displayName": "FlutterFlow Assistant",
+    "shortDescription": "Plan, wire, and harden FlutterFlow apps faster.",
+    "longDescription": "Guides FlutterFlow architecture, backend/API mapping, and launch readiness with practical build steps and validation checklists.",
+    "developerName": "All Clean Solutions",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Write",
+      "Analyze"
+    ],
+    "websiteURL": "https://app.flutterflow.io/project/a-c-s-control-center-6m0kfm?tab=widgetTree&page=Homepage",
+    "privacyPolicyURL": "https://acsbismarck.com/privacypolicy",
+    "termsOfServiceURL": "https://acsbismarck.com/termsandconditions",
+    "defaultPrompt": [
+      "Convert this feature spec into a FlutterFlow page tree.",
+      "Map this REST API schema into FlutterFlow API calls and models.",
+      "Audit my FlutterFlow app for launch risks and missing states."
+    ],
+    "brandColor": "#1AAE9F",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png",
+    "screenshots": [
+      "./assets/screenshot1.png",
+      "./assets/screenshot2.png",
+      "./assets/screenshot3.png"
+    ]
+  }
+}

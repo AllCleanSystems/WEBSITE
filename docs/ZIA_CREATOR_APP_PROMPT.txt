@@ -1,0 +1,162 @@
+You are helping me build a Zoho Creator app called “ACS Control Center” for All Clean Solutions.
+
+Goal: Create a Creator app that matches a Jobber/Housecall Pro style operating system and supports a FlutterFlow front end with these modules:
+Dashboard, Customers, Jobs, Schedule, Quotes, Invoices, Work Orders, Technicians, Expenses, Reports, Settings, Integrations, AI Command Center.
+
+Create the following FORMS (tables) with sensible field types and clear field link names (use underscores):
+
+1) System_Counters
+- Counter_Name (text, unique)
+- Prefix (text)
+- Next_Number (number)
+- Pad_Length (number)
+- Active (boolean)
+
+2) AI_Intake_Log (AI Inbox)
+Fields:
+- Channel (picklist: Website Chat, Phone, SMS, Manual)
+- Customer_Name (text)
+- Phone (text)
+- Email (email)
+- Address_Text (multi-line text)
+- Service_Type (picklist with: Restaurant Hood Cleaning, Deep Cleaning, Commercial Cleaning, Carpet Cleaning, Lawn Maintenance, Mowing, Shrub Trimming, Mulch Installation, Snow Removal, Other Services)
+- Urgency (picklist: Normal, Soon, Emergency, High, Low)
+- Preferred_Window (text)
+- Request_Summary (multi-line)
+- Transcript (multi-line)
+- Chat_Session_ID (text)
+- AI_Confidence (number 0-100)
+- Status (picklist: New, Needs Info, In Review, Ready, Converted, Scheduled, Closed, Duplicate)
+- Assigned_To (user or text)
+- Escalation_Flag (boolean)
+- Escalation_Reason (multi-line)
+- Last_Sync_Source (text)
+- Last_Sync_Time (datetime)
+
+3) Customers
+- Customer_ID (text, unique business id like CUS-1001)
+- First_Name (text)
+- Last_Name (text)
+- Phone (text)
+- Email (email)
+- Address_Text (multi-line)
+- Customer_Type (picklist: Residential, Commercial)
+- CRM_Contact_ID (text)
+- CRM_Account_ID (text)
+- Books_Contact_ID (text)
+- FSM_Contact_ID (text)
+- Sync_Status (picklist: Pending, Synced, Error)
+- Sync_Error (multi-line)
+- Last_Sync_Source (text)
+- Last_Sync_Time (datetime)
+
+4) Service_Requests
+- Request_ID (text, unique business id like REQ-000003)
+- Customer (lookup -> Customers)
+- Service_Type (same picklist)
+- Urgency (same picklist)
+- Preferred_Window (text)
+- Request_Summary (multi-line)
+- Status (picklist: New, Approved, Scheduled, In Progress, Completed, Closed)
+- Quote_ID (text)
+- Work_Order_ID (text)
+- CRM_Deal_ID (text)
+- FSM_Work_Order_ID (text)
+- Last_Sync_Source (text)
+- Last_Sync_Time (datetime)
+
+5) Quotes
+- Quote_ID (text, unique business id like QT-8)
+- Customer (lookup -> Customers)
+- Service_Request (lookup -> Service_Requests)
+- Service_Type (picklist)
+- Status (picklist: Draft, Sent, Accepted, Declined)
+- Subtotal (currency/number)
+- Tax_Total (currency/number)
+- Grand_Total (currency/number)
+- Books_Estimate_ID (text)
+- Last_Sync_Source (text)
+- Last_Sync_Time (datetime)
+
+6) Quote_Line_Items
+- Quote (lookup -> Quotes)
+- Line_Description (text)
+- Quantity (number)
+- Unit_Price (currency/number)
+- Tax_Amount (currency/number)
+- Line_Total (currency/number)
+- Optional_Item (boolean)
+- Selected_By_Customer (boolean)
+- Sort_Order (number)
+
+7) Work_Orders (Creator mirror of FSM)
+- Work_Order_ID (text, unique business id like WO-50)
+- Customer (lookup -> Customers)
+- Service_Request (lookup -> Service_Requests)
+- Service_Type (picklist)
+- Status (picklist: New, Assigned, Scheduled, In Progress, Completed, Closed)
+- Assigned_Tech (text)
+- Scheduled_Start (datetime)
+- Arrival_Window (text)
+- Completion_Notes (multi-line)
+- Completion_Summary (multi-line)
+- Grand_Total (currency/number)
+- Books_Invoice_ID (text)
+- FSM_Native_Work_Order_ID (text)
+- Last_Sync_Source (text)
+- Last_Sync_Time (datetime)
+
+8) Invoices (Creator mirror of Books)
+- Invoice_ID (text, unique business id like INV-0000022)
+- Customer (lookup -> Customers)
+- Work_Order (lookup -> Work_Orders)
+- Status (picklist: Draft, Sent, Paid, Overdue, Void)
+- Total (currency/number)
+- Balance_Due (currency/number)
+- Books_Invoice_ID (text)
+- Last_Sync_Source (text)
+- Last_Sync_Time (datetime)
+
+9) Expenses
+- Expense_Name (text)
+- Vendor (text)
+- Category (picklist)
+- Amount (currency/number)
+- Date (date)
+- Receipt (file upload)
+- Related_Work_Order (lookup -> Work_Orders)
+
+10) Technicians
+- Tech_Name (text)
+- Phone (text)
+- Role (picklist)
+- Clock_Status (picklist: Clocked In, Clocked Out)
+- Notes (multi-line)
+
+Also create REPORTS / PAGES:
+- Dashboard with cards (new leads, open quotes, scheduled today, unpaid invoices, urgent alerts)
+- Customers list + customer detail
+- Quotes list + detail
+- Work Orders list + schedule view
+- Invoices list + detail
+- AI Inbox report (AI_Intake_Log) with filters by Status/Urgency/Service_Type/Channel
+
+WORKFLOWS:
+- Auto-generate business IDs using System_Counters on add:
+  - Customers -> Customer_ID (CUS-1001)
+  - Service_Requests -> Request_ID (REQ-000003)
+  - Quotes -> Quote_ID (QT-8)
+  - Work_Orders -> Work_Order_ID (WO-50)
+  - Invoices -> Invoice_ID (INV-0000022)
+- Quote totals: whenever Quote_Line_Items add/update/delete, recalc Quote Subtotal/Tax_Total/Grand_Total.
+- AI Intake escalation rules:
+  - Emergency -> Escalation_Flag=true
+  - Phone/SMS -> Escalation_Flag=true
+  - AI_Confidence < 70 -> Escalation_Flag=true
+  - Missing key fields -> Status="Needs Info"
+
+INTEGRATIONS placeholders:
+Add fields to store external IDs (CRM/Books/FSM IDs as above) and Sync_Status/Sys logs, but do not build full sync yet.
+
+Important: keep field link names stable and clean (underscores) so FlutterFlow/Railway can integrate easily.
+

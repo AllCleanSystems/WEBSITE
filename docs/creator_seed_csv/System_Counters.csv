@@ -1,0 +1,8 @@
+Counter_Name,Prefix,Next_Number,Pad_Length,Active
+Customer,CUS-,1001,0,true
+ServiceRequest,REQ-,3,6,true
+Invoice,INV-,22,7,true
+Quote,QT-,8,0,true
+WorkOrder,WO-,50,0,true
+MaintenancePlan,MP-,1001,0,true
+

@@ -1,0 +1,36 @@
+﻿{
+  "apps": {
+    "wix": {
+      "status": "configured",
+      "authMethod": "bearerToken",
+      "env": [
+        "WIX_API_TOKEN",
+        "WIX_SITE_ID",
+        "WIX_ACCOUNT_ID"
+      ],
+      "defaultBaseUrl": "https://www.wixapis.com",
+      "starterActions": [
+        {
+          "id": "list-sites",
+          "method": "POST",
+          "path": "/site-list/v2/sites/query"
+        },
+        {
+          "id": "query-collections",
+          "method": "POST",
+          "path": "/wix-data/v2/items/query"
+        },
+        {
+          "id": "query-products",
+          "method": "POST",
+          "path": "/stores-reader/v1/products/query"
+        },
+        {
+          "id": "publish-site",
+          "method": "POST",
+          "path": "/site-publisher/v1/site/publish"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "apps": {
+    "flutterflow": {
+      "status": "configured",
+      "authMethod": "bearerToken",
+      "env": [
+        "FLUTTERFLOW_API_TOKEN",
+        "FLUTTERFLOW_API_BASE"
+      ],
+      "defaultBaseUrl": "https://api.flutterflow.io/v2",
+      "starterActions": [
+        {
+          "id": "list-projects",
+          "method": "POST",
+          "path": "/l/listProjects"
+        },
+        {
+          "id": "list-files",
+          "method": "GET",
+          "path": "/listPartitionedFileNames"
+        },
+        {
+          "id": "validate-file",
+          "method": "POST",
+          "path": "/validateProjectYaml"
+        },
+        {
+          "id": "update-file",
+          "method": "POST",
+          "path": "/updateProjectByYaml"
+        }
+      ]
+    }
+  }
+}

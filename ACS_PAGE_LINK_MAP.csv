@@ -1,0 +1,26 @@
+from_page,widget_or_trigger,to_page,notes
+Homepage,Work Orders Card,JobsWorkOrders,Primary jobs list
+Homepage,Open Requests Card,ServiceRequests,Service request queue
+Homepage,Pending Invoices Card,InvoicesAndPayments,AR and payment flow
+Homepage,Sync Errors Card,DataSyncAndAPILogs,Troubleshooting
+Homepage,Invoices & Quotes Summary,QuotesOverview,Revenue funnel
+Customers2,Customer Row Tap,CustomerDetail,Pass customerId
+LeadsManagement2,Lead Row Tap,IntakeDetails,Pass leadId
+JobsWorkOrders,Work Order Row Tap,WorkOrderExecution,Pass workOrderId
+WorkOrderExecution,Checklist CTA,fieldchecklist,Pass workOrderId
+QuotesOverview,Quote Row Tap,QuoteDetail,Pass quoteId
+Estimates,Estimate Row Tap,Quotes2,Convert to quote flow
+InvoicesAndPayments,Invoice Row Tap,QuoteDetail,Optional invoice detail reuse
+UnifiedInbox,Message Row Tap,Requestpage,Open conversation/request detail
+ServiceRequests,Request Row Tap,Requestpage,Shared request detail
+FSMOperations,Dispatch Action,schedule,Jump to scheduling
+ScheduleDispatch,Assigned Job Tap,WorkOrderExecution,Technician handoff
+Checklist,Checklist Row Tap,fieldchecklist,Execution details
+fieldchecklist,Submit/Complete,WorkOrderExecution,Return after completion
+IntegrationsSettings,Sync Logs Button,DataSyncAPILogs,Integration diagnostics
+IntegrationsSettings,Network Button,NetworkPerformance,Reliability metrics
+ZohoSocial,Campaign Detail,GoogleAdsPerformance,Cross-channel metrics
+AICommandCenter,Open Customer Context,CustomerDetail,AI assisted drill-down
+AICommandCenter,Open Work Order Context,WorkOrderExecution,AI assisted drill-down
+AICommandCenter,Open Revenue Context,QuotesOverview,AI assisted drill-down
+SignIn2,Login Success,Homepage,Authenticated landing

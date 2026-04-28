@@ -1,0 +1,52 @@
+﻿{
+  "name": "wix",
+  "version": "0.1.0",
+  "description": "Codex plugin for Wix site operations, API workflows, and publishing readiness.",
+  "author": {
+    "name": "All Clean Solutions",
+    "email": "Jveal@allcleansolutionsbismarck.com",
+    "url": "https://www.acsbismarck.com"
+  },
+  "homepage": "https://dev.wix.com/docs",
+  "repository": "https://github.com/AllCleanSystems/acs-ai-backend2",
+  "license": "MIT",
+  "keywords": [
+    "wix",
+    "website",
+    "cms",
+    "ecommerce",
+    "automation"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks.json",
+  "mcpServers": "./.mcp.json",
+  "apps": "./.app.json",
+  "interface": {
+    "displayName": "Wix Assistant",
+    "shortDescription": "Build, manage, and automate Wix sites faster.",
+    "longDescription": "Helps plan and execute Wix tasks across site setup, content updates, catalog operations, and production launch checks using practical API-first workflows.",
+    "developerName": "All Clean Solutions",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Write",
+      "Analyze"
+    ],
+    "websiteURL": "https://dev.wix.com/docs",
+    "privacyPolicyURL": "https://acsbismarck.com/privacypolicy",
+    "termsOfServiceURL": "https://acsbismarck.com/termsandconditions",
+    "defaultPrompt": [
+      "List my Wix sites and summarize which one is best to update for this request.",
+      "Create a step-by-step plan to update my Wix pages, SEO metadata, and forms.",
+      "Generate a safe rollout checklist for publishing Wix changes today."
+    ],
+    "brandColor": "#0C6EFC",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png",
+    "screenshots": [
+      "./assets/screenshot1.png",
+      "./assets/screenshot2.png",
+      "./assets/screenshot3.png"
+    ]
+  }
+}

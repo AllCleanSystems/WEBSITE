@@ -1,0 +1,5161 @@
+/*
+ * Author       : allcleansolutions
+ * Generated on : 14-Apr-2026 02:54:16
+ * Version      : 1.0
+ */
+ application "ACS Control Center"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "America/Los_Angeles"
+ 	time format = "24-hr"
+
+ 	forms
+	{
+		form ai_intake_log
+		{
+			displayname = "AI Intake Log"
+			success message = "Ai Intake Log Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			channel
+			(
+				type = picklist
+				displayname = "Channel"
+				values = {"Website Chat","Phone","SMS","Manual"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			customer_name
+			(
+    			type = text
+				displayname = "Customer Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			phone
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			email
+			(
+    			type = email
+				displayname = "Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			address_text
+			(
+    			type = textarea
+				displayname = "Address Text"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			service_type
+			(
+				type = picklist
+				displayname = "Service Type"
+				values = {"Carpet Cleaning","Mowing","Shrub Trimming","Commercial Cleaning","Snow Removal","Other Services","Mulch Installation","Restaurant Hood Cleaning","Deep Cleaning","Lawn Maintenance"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			urgency
+			(
+				type = picklist
+				displayname = "Urgency"
+				values = {"High","Low","Emergency","Normal","Soon"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			preferred_window
+			(
+    			type = text
+				displayname = "Preferred Window"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			request_summary
+			(
+    			type = textarea
+				displayname = "Request Summary"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			transcript
+			(
+    			type = textarea
+				displayname = "Transcript"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			chat_session_id
+			(
+    			type = text
+				displayname = "Chat Session ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			ai_confidence
+			(
+				type = number
+				displayname = "AI Confidence"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			status
+			(
+				type = picklist
+				displayname = "Status"
+				values = {"Scheduled","New","Ready","In Review","Closed","Needs Info","Duplicate","Converted"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			assigned_to
+			(
+    			type = text
+				displayname = "Assigned To"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			escalation_flag
+			(
+    			type = checkbox
+				displayname = "Escalation Flag"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			escalation_reason
+			(
+    			type = textarea
+				displayname = "Escalation Reason"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_source
+			(
+    			type = text
+				displayname = "Last Sync Source"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_time
+			(
+    			type = datetime
+				displayname = "Last Sync Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form customers
+		{
+			displayname = "Customers"
+			success message = "Customer Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			customer_id
+			(
+    			type = text
+				displayname = "Customer ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			first_name1
+			(
+    			type = name
+				displayname = "First Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+	     			 visibility = false
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_name1
+			(
+    			type = name
+				displayname = "Last Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+	     			 visibility = false
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			phone
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			email
+			(
+    			type = email
+				displayname = "Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			address_text
+			(
+    			type = textarea
+				displayname = "Address Text"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			customer_type
+			(
+				type = radiobuttons
+				displayname = "Customer Type"
+				values = {"Commercial","Residential"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			crm_contact_id
+			(
+    			type = text
+				displayname = "CRM Contact ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			crm_account_id
+			(
+    			type = text
+				displayname = "CRM Account ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			books_contact_id
+			(
+    			type = text
+				displayname = "Books Contact ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			fsm_contact_id
+			(
+    			type = text
+				displayname = "FSM Contact ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			sync_status
+			(
+				type = picklist
+				displayname = "Sync Status"
+				values = {"Synced","Error","Pending"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			sync_error
+			(
+    			type = textarea
+				displayname = "Sync Error"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_source
+			(
+    			type = text
+				displayname = "Last Sync Source"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_time
+			(
+    			type = datetime
+				displayname = "Last Sync Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form expenses
+		{
+			displayname = "Expenses"
+			success message = "Expense Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			expense_name
+			(
+    			type = text
+				displayname = "Expense Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			vendor
+			(
+    			type = text
+				displayname = "Vendor"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			category
+			(
+				type = picklist
+				displayname = "Category"
+				values = {"Travel","Equipment","Supplies","Meals","Other"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			amount
+			(
+				displayname = "Amount"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			date_1
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			receipt
+			(
+    			type = url
+				displayname = "Receipt"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			related_work_order
+			(
+				type = list	
+				displayname = "Related Work Order"
+				values  = work_orders.ID
+    			displayformat = [work_order_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form invoices
+		{
+			displayname = "Invoices"
+			success message = "Invoice Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			invoice_id
+			(
+    			type = text
+				displayname = "Invoice ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			customer
+			(
+				type = list	
+				displayname = "Customer"
+				values  = customers.ID
+    			displayformat = [customer_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			work_order
+			(
+				type = list	
+				displayname = "Work Order"
+				values  = work_orders.ID
+    			displayformat = [work_order_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			status
+			(
+				type = picklist
+				displayname = "Status"
+				values = {"Draft","Paid","Overdue","Void","Sent"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			total
+			(
+				displayname = "Total"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			balance_due
+			(
+				displayname = "Balance Due"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			books_invoice_id
+			(
+    			type = text
+				displayname = "Books Invoice ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_source
+			(
+    			type = text
+				displayname = "Last Sync Source"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_time
+			(
+    			type = datetime
+				displayname = "Last Sync Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form quote_line_items
+		{
+			displayname = "Quote Line Items"
+			success message = "Quote Line Item Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			quote
+			(
+				type = list	
+				displayname = "Quote"
+				values  = quotes.ID
+    			displayformat = [quote_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			line_description
+			(
+    			type = text
+				displayname = "Line Description"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			quantity
+			(
+				type = number
+				displayname = "Quantity"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			unit_price
+			(
+				displayname = "Unit Price"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			tax_amount
+			(
+				displayname = "Tax Amount"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			line_total
+			(
+				displayname = "Line Total"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			optional_item
+			(
+    			type = checkbox
+				displayname = "Optional Item"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			selected_by_customer
+			(
+    			type = checkbox
+				displayname = "Selected By Customer"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			sort_order
+			(
+				type = number
+				displayname = "Sort Order"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form quotes
+		{
+			displayname = "Quotes"
+			success message = "Quote Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			quote_id
+			(
+    			type = text
+				displayname = "Quote ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			customer
+			(
+				type = list	
+				displayname = "Customer"
+				values  = customers.ID
+    			displayformat = [customer_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			service_request
+			(
+				type = list	
+				displayname = "Service Request"
+				values  = service_requests.ID
+    			displayformat = [request_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			service_type
+			(
+				type = picklist
+				displayname = "Service Type"
+				values = {"Carpet Cleaning","Mowing","Shrub Trimming","Commercial Cleaning","Snow Removal","Other Services","Mulch Installation","Restaurant Hood Cleaning","Deep Cleaning","Lawn Maintenance"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			status
+			(
+				type = picklist
+				displayname = "Status"
+				values = {"Draft","Declined","Accepted","Sent"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			subtotal
+			(
+				displayname = "Subtotal"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			tax_total
+			(
+				displayname = "Tax Total"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			grand_total
+			(
+				displayname = "Grand Total"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			books_estimate_id
+			(
+    			type = text
+				displayname = "Books Estimate ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_source
+			(
+    			type = text
+				displayname = "Last Sync Source"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_time
+			(
+    			type = datetime
+				displayname = "Last Sync Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form service_requests
+		{
+			displayname = "Service Requests"
+			success message = "Service Request Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			request_id
+			(
+    			type = text
+				displayname = "Request ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			customer
+			(
+				type = list	
+				displayname = "Customer"
+				values  = customers.ID
+    			displayformat = [customer_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			service_type
+			(
+				type = picklist
+				displayname = "Service Type"
+				values = {"Carpet Cleaning","Mowing","Shrub Trimming","Commercial Cleaning","Snow Removal","Other Services","Mulch Installation","Restaurant Hood Cleaning","Deep Cleaning","Lawn Maintenance"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			urgency
+			(
+				type = picklist
+				displayname = "Urgency"
+				values = {"High","Low","Emergency","Normal","Soon"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			preferred_window
+			(
+    			type = text
+				displayname = "Preferred Window"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			request_summary
+			(
+    			type = textarea
+				displayname = "Request Summary"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			status
+			(
+				type = picklist
+				displayname = "Status"
+				values = {"Scheduled","New","Closed","Approved","Completed","In Progress"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			quote_id
+			(
+    			type = text
+				displayname = "Quote ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			work_order_id
+			(
+    			type = text
+				displayname = "Work Order ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			crm_deal_id
+			(
+    			type = text
+				displayname = "CRM Deal ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			fsm_work_order_id
+			(
+    			type = text
+				displayname = "FSM Work Order ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_source
+			(
+    			type = text
+				displayname = "Last Sync Source"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_time
+			(
+    			type = datetime
+				displayname = "Last Sync Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+			blueprint components
+			{
+				stages = {"Service Request Created","Request Assigned","Request Cancelled","Request In Progress","Request On Hold","Request Resolved","Request Escalated","Request Closed","Request Reopened"}
+			}
+		}
+		form system_counters
+		{
+			displayname = "System Counters"
+			success message = "System Counter Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			counter_name
+			(
+    			type = text
+				displayname = "Counter Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			prefix1
+			(
+    			type = text
+				displayname = "Prefix"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			next_number
+			(
+				type = number
+				displayname = "Next Number"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			pad_length
+			(
+				type = number
+				displayname = "Pad Length"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			active
+			(
+    			type = checkbox
+				displayname = "Active"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form technicians
+		{
+			displayname = "Technicians"
+			success message = "Technician Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			tech_name
+			(
+    			type = name
+				displayname = "Tech Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+	     			 visibility = false
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			phone
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			role
+			(
+				type = picklist
+				displayname = "Role"
+				values = {"Supervisor","Technician","Manager","Lead Technician","Other"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			clock_status
+			(
+				type = radiobuttons
+				displayname = "Clock Status"
+				values = {"Clocked Out","Clocked In"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			notes
+			(
+    			type = textarea
+				displayname = "Notes"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form work_orders
+		{
+			displayname = "Work Orders"
+			success message = "Work Order Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			work_order_id
+			(
+    			type = text
+				displayname = "Work Order ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			customer
+			(
+				type = list	
+				displayname = "Customer"
+				values  = customers.ID
+    			displayformat = [customer_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			service_request
+			(
+				type = list	
+				displayname = "Service Request"
+				values  = service_requests.ID
+    			displayformat = [request_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			service_type
+			(
+				type = picklist
+				displayname = "Service Type"
+				values = {"Carpet Cleaning","Mowing","Shrub Trimming","Commercial Cleaning","Snow Removal","Other Services","Mulch Installation","Restaurant Hood Cleaning","Deep Cleaning","Lawn Maintenance"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			status
+			(
+				type = picklist
+				displayname = "Status"
+				values = {"Assigned","Scheduled","New","Closed","Completed","In Progress"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			assigned_tech
+			(
+    			type = text
+				displayname = "Assigned Tech"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			scheduled_start
+			(
+    			type = datetime
+				displayname = "Scheduled Start"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			arrival_window
+			(
+    			type = text
+				displayname = "Arrival Window"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			completion_notes
+			(
+    			type = textarea
+				displayname = "Completion Notes"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			completion_summary
+			(
+    			type = textarea
+				displayname = "Completion Summary"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			grand_total
+			(
+				displayname = "Grand Total"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			books_invoice_id
+			(
+    			type = text
+				displayname = "Books Invoice ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			fsm_native_work_order_id
+			(
+    			type = text
+				displayname = "FSM Native Work Order ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_source
+			(
+    			type = text
+				displayname = "Last Sync Source"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_sync_time
+			(
+    			type = datetime
+				displayname = "Last Sync Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+			blueprint components
+			{
+				stages = {"Work Order Created","Work Order Assigned","Work Order Cancelled","Work Order In Progress","Work Order Completed","Work Order On Hold","Work Order Closed","Work Order Reopened"}
+			}
+		}
+	}
+	reports
+	{
+		list quotes_Report
+		{
+			displayName = "All Quotes"
+			show all rows from quotes    
+			(
+				quote_id as "Quote ID"
+				customer as "Customer"
+				service_request as "Service Request"
+				service_type as "Service Type"
+				status as "Status"
+				subtotal as "Subtotal"
+				(
+					display = total,average,min,max	
+				)
+				tax_total as "Tax Total"
+				(
+					display = total,average,min,max	
+				)
+				grand_total as "Grand Total"
+				(
+					display = total,average,min,max	
+				)
+				books_estimate_id as "Books Estimate ID"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (status == "Declined")
+				fields = [status]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (status == "Draft")
+				fields = [status]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (status == "Sent")
+				fields = [status]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+			)
+		}
+		kanban quotes_by_service_type
+		{
+			displayName = "Service Types"
+			show all rows from quotes    
+			(
+				quote_id as "Quote ID"
+				customer as "Customer"
+				service_request as "Service Request"
+				service_type as "Service Type"
+				status as "Status"
+				subtotal as "Subtotal"
+				(
+					display = total,average,min,max	
+				)
+				tax_total as "Tax Total"
+				(
+					display = total,average,min,max	
+				)
+				grand_total as "Grand Total"
+				(
+					display = total,average,min,max	
+				)
+				books_estimate_id as "Books Estimate ID"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+			options
+			(
+	 			display field = service_type
+	 		)
+		}
+		list invoices_Report
+		{
+			displayName = "All Invoices"
+			show all rows from invoices    
+			(
+				invoice_id as "Invoice ID"
+				customer as "Customer"
+				work_order as "Work Order"
+				status as "Status"
+				total as "Total"
+				(
+					display = total,average,min,max	
+				)
+				balance_due as "Balance Due"
+				(
+					display = total,average,min,max	
+				)
+				books_invoice_id as "Books Invoice ID"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (status == "Draft")
+				fields = [status]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (status == "Overdue")
+				fields = [status]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (status == "Paid")
+				fields = [status]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+				"New Formatting4"
+				{
+				condition = (status == "Void")
+				fields = [status]
+				format = "color:#ffffff;background-color:#3598db;"
+				}
+			)
+		}
+		kanban invoices_by_status
+		{
+			displayName = "Statuses"
+			show all rows from invoices    
+			(
+				invoice_id as "Invoice ID"
+				customer as "Customer"
+				work_order as "Work Order"
+				status as "Status"
+				total as "Total"
+				(
+					display = total,average,min,max	
+				)
+				balance_due as "Balance Due"
+				(
+					display = total,average,min,max	
+				)
+				books_invoice_id as "Books Invoice ID"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+			options
+			(
+	 			display field = status
+	 		)
+		}
+		list work_orders_Report
+		{
+			displayName = "All Work Orders"
+			show all rows from work_orders    
+			(
+				work_order_id as "Work Order ID"
+				customer as "Customer"
+				service_request as "Service Request"
+				service_type as "Service Type"
+				status as "Status"
+				assigned_tech as "Assigned Tech"
+				scheduled_start as "Scheduled Start"
+				arrival_window as "Arrival Window"
+				completion_notes as "Completion Notes"
+				completion_summary as "Completion Summary"
+				grand_total as "Grand Total"
+				(
+					display = total,average,min,max	
+				)
+				books_invoice_id as "Books Invoice ID"
+				fsm_native_work_order_id as "FSM Native Work Order ID"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+		}
+		kanban work_orders_by_service_type
+		{
+			displayName = "Service Types"
+			show all rows from work_orders    
+			(
+				work_order_id as "Work Order ID"
+				customer as "Customer"
+				service_request as "Service Request"
+				service_type as "Service Type"
+				status as "Status"
+				assigned_tech as "Assigned Tech"
+				scheduled_start as "Scheduled Start"
+				arrival_window as "Arrival Window"
+				completion_notes as "Completion Notes"
+				completion_summary as "Completion Summary"
+				grand_total as "Grand Total"
+				(
+					display = total,average,min,max	
+				)
+				books_invoice_id as "Books Invoice ID"
+				fsm_native_work_order_id as "FSM Native Work Order ID"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+			options
+			(
+	 			display field = service_type
+	 		)
+		}
+		list service_requests_Report
+		{
+			displayName = "All Service Requests"
+			show all rows from service_requests    
+			(
+				request_id as "Request ID"
+				customer as "Customer"
+				service_type as "Service Type"
+				urgency as "Urgency"
+				preferred_window as "Preferred Window"
+				request_summary as "Request Summary"
+				status as "Status"
+				quote_id as "Quote ID"
+				work_order_id as "Work Order ID"
+				crm_deal_id as "CRM Deal ID"
+				fsm_work_order_id as "FSM Work Order ID"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (urgency == "High")
+				fields = [urgency]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (urgency == "Low")
+				fields = [urgency]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (urgency == "Normal")
+				fields = [urgency]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+			)
+		}
+		kanban service_requests_by_service_type
+		{
+			displayName = "Service Types"
+			show all rows from service_requests    
+			(
+				request_id as "Request ID"
+				customer as "Customer"
+				service_type as "Service Type"
+				urgency as "Urgency"
+				preferred_window as "Preferred Window"
+				request_summary as "Request Summary"
+				status as "Status"
+				quote_id as "Quote ID"
+				work_order_id as "Work Order ID"
+				crm_deal_id as "CRM Deal ID"
+				fsm_work_order_id as "FSM Work Order ID"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+			options
+			(
+	 			display field = service_type
+	 		)
+		}
+		list ai_intake_log_Report
+		{
+			displayName = "All Ai Intake Logs"
+			show all rows from ai_intake_log    
+			(
+				channel as "Channel"
+				customer_name as "Customer Name"
+				phone as "Phone"
+				email as "Email"
+				address_text as "Address Text"
+				service_type as "Service Type"
+				urgency as "Urgency"
+				preferred_window as "Preferred Window"
+				request_summary as "Request Summary"
+				transcript as "Transcript"
+				chat_session_id as "Chat Session ID"
+				ai_confidence as "AI Confidence"
+				status as "Status"
+				assigned_to as "Assigned To"
+				escalation_flag as "Escalation Flag"
+				escalation_reason as "Escalation Reason"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (urgency == "Emergency")
+				fields = [urgency]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (urgency == "Low")
+				fields = [urgency]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (urgency == "Soon")
+				fields = [urgency]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+			)
+		}
+		kanban ai_intake_log_by_service_type
+		{
+			displayName = "Service Types"
+			show all rows from ai_intake_log    
+			(
+				channel as "Channel"
+				customer_name as "Customer Name"
+				phone as "Phone"
+				email as "Email"
+				address_text as "Address Text"
+				service_type as "Service Type"
+				urgency as "Urgency"
+				preferred_window as "Preferred Window"
+				request_summary as "Request Summary"
+				transcript as "Transcript"
+				chat_session_id as "Chat Session ID"
+				ai_confidence as "AI Confidence"
+				status as "Status"
+				assigned_to as "Assigned To"
+				escalation_flag as "Escalation Flag"
+				escalation_reason as "Escalation Reason"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+			options
+			(
+	 			display field = service_type
+	 		)
+		}
+		list customers_Report
+		{
+			displayName = "All Customers"
+			show all rows from customers    
+			(
+				customer_id as "Customer ID"
+				first_name1  as "First Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				last_name1  as "Last Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				phone as "Phone"
+				email as "Email"
+				address_text as "Address Text"
+				customer_type as "Customer Type"
+				crm_contact_id as "CRM Contact ID"
+				crm_account_id as "CRM Account ID"
+				books_contact_id as "Books Contact ID"
+				fsm_contact_id as "FSM Contact ID"
+				sync_status as "Sync Status"
+				sync_error as "Sync Error"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (sync_status == "Error")
+				fields = [sync_status]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (sync_status == "Pending")
+				fields = [sync_status]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (sync_status == "Synced")
+				fields = [sync_status]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+			)
+		}
+		kanban customers_by_sync_status
+		{
+			displayName = "Sync Statuses"
+			show all rows from customers    
+			(
+				customer_id as "Customer ID"
+				first_name1  as "First Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				last_name1  as "Last Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				phone as "Phone"
+				email as "Email"
+				address_text as "Address Text"
+				customer_type as "Customer Type"
+				crm_contact_id as "CRM Contact ID"
+				crm_account_id as "CRM Account ID"
+				books_contact_id as "Books Contact ID"
+				fsm_contact_id as "FSM Contact ID"
+				sync_status as "Sync Status"
+				sync_error as "Sync Error"
+				last_sync_source as "Last Sync Source"
+				last_sync_time as "Last Sync Time"
+			)
+			options
+			(
+	 			display field = sync_status
+	 		)
+		}
+		list quote_line_items_Report
+		{
+			displayName = "All Quote Line Items"
+			show all rows from quote_line_items    
+			(
+				quote as "Quote"
+				line_description as "Line Description"
+				quantity as "Quantity"
+				unit_price as "Unit Price"
+				(
+					display = total,average,min,max	
+				)
+				tax_amount as "Tax Amount"
+				(
+					display = total,average,min,max	
+				)
+				line_total as "Line Total"
+				(
+					display = total,average,min,max	
+				)
+				optional_item as "Optional Item"
+				selected_by_customer as "Selected By Customer"
+				sort_order as "Sort Order"
+			)
+		}
+		list system_counters_Report
+		{
+			displayName = "All System Counters"
+			show all rows from system_counters    
+			(
+				counter_name as "Counter Name"
+				prefix1 as "Prefix"
+				next_number as "Next Number"
+				pad_length as "Pad Length"
+				active as "Active"
+			)
+		}
+		list expenses_Report
+		{
+			displayName = "All Expenses"
+			show all rows from expenses    
+			(
+				expense_name as "Expense Name"
+				vendor as "Vendor"
+				category as "Category"
+				amount as "Amount"
+				(
+					display = total,average,min,max	
+				)
+				date_1 as "Date"
+				receipt as "Receipt"
+				related_work_order as "Related Work Order"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (category == "Equipment")
+				fields = [category]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (category == "Other")
+				fields = [category]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (category == "Travel")
+				fields = [category]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+			)
+		}
+		kanban expenses_by_category
+		{
+			displayName = "Categories"
+			show all rows from expenses    
+			(
+				expense_name as "Expense Name"
+				vendor as "Vendor"
+				category as "Category"
+				amount as "Amount"
+				(
+					display = total,average,min,max	
+				)
+				date_1 as "Date"
+				receipt as "Receipt"
+				related_work_order as "Related Work Order"
+			)
+			options
+			(
+	 			display field = category
+	 		)
+		}
+		list technicians_Report
+		{
+			displayName = "All Technicians"
+			show all rows from technicians    
+			(
+				tech_name  as "Tech Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				phone as "Phone"
+				role as "Role"
+				clock_status as "Clock Status"
+				notes as "Notes"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (role == "Other")
+				fields = [role]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (role == "Supervisor")
+				fields = [role]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (role == "Technician")
+				fields = [role]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+			)
+		}
+		kanban technicians_by_role
+		{
+			displayName = "Roles"
+			show all rows from technicians    
+			(
+				tech_name  as "Tech Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				phone as "Phone"
+				role as "Role"
+				clock_status as "Clock Status"
+				notes as "Notes"
+			)
+			options
+			(
+	 			display field = role
+	 		)
+		}
+	}
+	pages
+	{
+		page DashBoard
+		{
+			displayname = "Dashboard"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 1'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#F97164'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '20px'\n\tpaddingLeft = '20px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '64%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginTop = '8px'\n\tcolor = '#FFFFFF'\n\tsize = '24px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.quotes.grand_total.sum'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '8px' \n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Total Grand Total'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '36%'\n\t\thAlign = 'right'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#C75A50'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'users-2-voice-record'\n\tsize = '22px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='24%'\n   \t>\n\t<panel elementName='Panel 2'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#EEA131'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '20px'\n\tpaddingLeft = '20px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '65%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '24px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.quotes.tax_total.sum'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Total Tax Total'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '35%'\n\t\thAlign = 'right'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '10px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#BE8127'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'business-percentage-39'\n\tsize = '22px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 3'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#00CFA9'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '20px'\n\tpaddingLeft = '20px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '65%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '24px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.quotes.subtotal.sum'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Total Subtotal'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '35%'\n\t\thAlign = 'right'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '10px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#0BA385'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'users-2-b-add'\n\tsize = '22px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='26%'\n   \t>\n\t<panel elementName='Panel 4'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#3E99DE'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '20px'\n\tpaddingLeft = '20px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '65%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '24px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.invoices.total.sum'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Total '\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '35%'\n\t\thAlign = 'right'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '10px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#0E78C9'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'business-percentage-39'\n\tsize = '22px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<panel elementName='Grouped_Panel 1'\n \n\t\n\ttitle = 'Status'\n\t\n\t\ttitleSize = '15px'\n            boldTitle = 'true'\n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '25%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#F97164'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'design-pen-23'\n\tsize = '22px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\tpaddingLeft = '10px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tcolor = '#C75A50'\n\tsize = '28px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'status == &quot;Draft&quot;'\n\t  value = 'thisapp.quotes.status.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tcolor = '#595959'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Drafts'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '25%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#EEA131'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'nature-flower-07'\n\tsize = '22px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\tpaddingLeft = '10px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tcolor = '#BE8127'\n\tsize = '28px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'status == &quot;Declined&quot;'\n\t  value = 'thisapp.quotes.status.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tmarginTop = '0px'\n\tcolor = '#595959'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Declined'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '25%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#00CFA9'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'clothes-tie-bow'\n\tsize = '22px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\tpaddingLeft = '10px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tcolor = '#0BA385'\n\tsize = '28px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'status == &quot;Accepted&quot;'\n\t  value = 'thisapp.quotes.status.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tmarginTop = '0px'\n\tcolor = '#595959'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Accepted'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '25%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#3E99DE'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'shopping-delivery'\n\tsize = '22px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\tpaddingLeft = '10px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tcolor = '#0E78C9'\n\tsize = '28px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'status == &quot;Sent&quot;'\n\t  value = 'thisapp.quotes.status.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tmarginTop = '0px'\n\tcolor = '#595959'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Sent'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='24%'\n   \t>\n\t<panel elementName='Panel_Button 1'\n \n\t\n\ttitle = 'Quick Links'\n\t\n\t\ttitleSize = '15px'\n            boldTitle = 'true'\n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#CB6711'\n\n\t\twidth = '2%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '10px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '10px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenForm'\n\t\tcomponentLinkName = 'quotes'\n\t\ttarget = 'new-window'\n\t\twidth = '98%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '6px' \n\n\tcolor = '#3F3F3F'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '14px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tcolor = '#595959'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Add New Quotes'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='27%'\n   \t>\n\t<panel elementName='Panel_Button 2'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#CB6711'\n\n\t\twidth = '2%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '10px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '10px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenForm'\n\t\tcomponentLinkName = 'invoices'\n\t\ttarget = 'new-window'\n\t\twidth = '98%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '6px' \n\n\tcolor = '#3F3F3F'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '14px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tcolor = '#3F3F3F'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Add New Invoices'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel_Button 3'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#CB6711'\n\n\t\twidth = '2%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '10px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '10px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenForm'\n\t\tcomponentLinkName = 'work_orders'\n\t\ttarget = 'new-window'\n\t\twidth = '98%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '6px' \n\n\tcolor = '#3F3F3F'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '14px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tcolor = '#3F3F3F'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Add New Work Orders'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='24%'\n   \t>\n\t<panel elementName='Panel_Button 4'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#CB6711'\n\n\t\twidth = '2%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '10px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '10px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenForm'\n\t\tcomponentLinkName = 'service_requests'\n\t\ttarget = 'new-window'\n\t\twidth = '98%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '6px' \n\n\tcolor = '#3F3F3F'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '14px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tcolor = '#3F3F3F'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Add New Service Requests'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart 1'\n\n\t\n\ttitle = 'Last Sync Source by Total'\n\t\n\t\ttitleSize = '16px'\n\ttype = 'Bar'\n\txtitle = 'Last Sync Source'\n\tytitle = 'Total'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = '#f37d16'\n\tlegendPos = 'none'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'invoices'\n\txfield = 'last_sync_source'\n\tyfields = 'sum:total'\n\tgroupBy = 'invoice_id'\n\t\tDelugeCriteria = 'last_sync_source is not null &amp;&amp; last_sync_source != &quot;&quot;'\n/>\n\n</column><column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart 2'\n\n\t\n\ttitle = 'Status by Grand Total'\n\t\n\t\ttitleSize = '16px'\n\ttype = 'Bar'\n\txtitle = 'Status'\n\tytitle = 'Grand Total'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = 'theme1'\n\tlegendPos = 'none'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'work_orders'\n\txfield = 'status'\n\tyfields = 'sum:grand_total'\n\tgroupBy = 'work_order_id'\n\t\tDelugeCriteria = 'status is not null &amp;&amp; status != &quot;&quot;'\n/>\n\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<report \n\telementName='Report'\n\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'quotes_Report'\n\t\n\t\tiszreport = 'false'\n\t\t\t\t\tzc_AddRec = 'false'\n\t\t\t\t\tzc_EditRec = 'false'\n\t\t\t\t\tzc_Print = 'false'\n\t\t\t\t\tzc_Export = 'false'\n\t\t\t\t\tzc_DelRec = 'false'\n\t\t\t\t\tzc_DuplRec = 'false'\n\t\t\t\t\tzc_Search = 'false'\n\t\t\t\t\tzc_EditBulkRec = 'false'\n\t\t\t\t\tzc_BulkDelete = 'false'\n\t\t\t\t\tzc_BulkDuplicate = 'false'\n\theightType = 'auto'\n\theightValue = '700'\n\n/>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+	}
+
+
+		 functions
+		 {
+			 Deluge
+			 {
+				 map Functioncreatingaiagent()
+                 {
+                 	return Map();
+                 }
+			 }
+		 }
+
+
+		workflow
+		{
+		form
+		{
+			urgency_notification as "Urgency Notification"
+			{
+				type =  form
+				form = service_requests
+
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.urgency == "High")
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :zoho.loginuserid
+												subject :"High Urgency Service Request Created"
+												message :"A new service request with high urgency has been created. Request Summary: " + input.request_summary
+												content type :HTML
+											]
+										}
+						)
+					}
+				}
+
+			}
+			service_request_validation as "Service Request Validation"
+			{
+				type =  form
+				form = service_requests
+
+				record event = on add or edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.request_summary.isNull() || input.request_summary.isBlank())
+										{
+											alert(request_summary,"Request Summary cannot be empty");
+											cancel submit;
+										}
+										if(input.status.isNull() || input.status.isBlank())
+										{
+											alert(status,"Status must be selected");
+											cancel submit;
+										}
+										if(input.service_type.isNull() || input.service_type.isBlank())
+										{
+											alert(service_type,"Service Type must be selected");
+											cancel submit;
+										}
+										if(input.urgency.isNull() || input.urgency.isBlank())
+										{
+											alert(urgency,"Urgency must be selected");
+											cancel submit;
+										}
+										if(input.customer.isNull() || input.customer.isEmpty())
+										{
+											alert(customer,"Customer must be selected");
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+		}
+
+		schedule
+		{
+			monthly_financial_summary as "Monthly Financial Summary"
+			{
+				type =  schedule
+					status = inactive
+				start = "2024-05-26 15:53:12"
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						subjectText = "Monthly Financial Summary";
+										messageBody = "<p>Dear Management,</p><p>Please find the monthly financial summary attached.</p>";
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :zoho.adminuserid
+											subject :subjectText
+											message :messageBody
+											content type :HTML
+										]
+					)
+					}
+				}
+			}
+			invoice_due_reminder as "Invoice Due Reminder"
+			{
+				type =  schedule
+				form = invoices
+					status = inactive
+				start = last_sync_time
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						if(input.status == "Overdue")
+										{
+											sendmail
+											[
+												from :zoho.loginuserid
+												to :input.customer.email
+												subject :"Reminder: Overdue Invoice"
+												message :"<p>Dear Customer,</p><p>This is a reminder that your invoice with ID " + input.invoice_id + " is overdue. Please make the payment at your earliest convenience.</p><p>Thank you.</p>"
+												content type :HTML
+											]
+										}
+					)
+					}
+				}
+			}
+		}
+
+
+		blueprint
+		{
+    			work_order_execution as "Work Order Execution"
+    			{
+        			type = Blueprint
+        			form = work_orders
+        			start
+        			{
+            			start stage = "Work Order Created"
+        			}
+        			stages
+        			{
+           			"Work Order Created"
+           			{
+           			}
+           			"Work Order Assigned"
+           			{
+           			}
+           			"Work Order Cancelled"
+           			{
+           			}
+           			"Work Order In Progress"
+           			{
+           			}
+           			"Work Order Completed"
+           			{
+           			}
+           			"Work Order On Hold"
+           			{
+           			}
+           			"Work Order Closed"
+           			{
+           			}
+           			"Work Order Reopened"
+           			{
+           			}
+        			}
+        			transitions
+        			{
+    				assign_work_order as "Assign Work Order"
+    				{
+         				type = normal
+         				from stage = "Work Order Created"
+         				to stage = "Work Order Assigned"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				cancel_work_order as "Cancel Work Order"
+    				{
+         				type = normal
+         				from stage = "Work Order Created"
+         				to stage = "Work Order Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				close_work_order as "Close Work Order"
+    				{
+         				type = normal
+         				from stage = "Work Order Completed"
+         				to stage = "Work Order Closed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				complete_work_order as "Complete Work Order"
+    				{
+         				type = normal
+         				from stage = "Work Order In Progress"
+         				to stage = "Work Order Completed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				continue_work_order as "Continue Work Order"
+    				{
+         				type = normal
+         				from stage = "Work Order Reopened"
+         				to stage = "Work Order In Progress"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				hold_work_order as "Put Work Order On Hold"
+    				{
+         				type = normal
+         				from stage = "Work Order In Progress"
+         				to stage = "Work Order On Hold"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reopen_work_order as "Reopen Work Order"
+    				{
+         				type = normal
+         				from stage = "Work Order Completed"
+         				to stage = "Work Order Reopened"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				resume_work_order as "Resume Work Order"
+    				{
+         				type = normal
+         				from stage = "Work Order On Hold"
+         				to stage = "Work Order In Progress"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				start_work_order as "Start Work Order"
+    				{
+         				type = normal
+         				from stage = "Work Order Assigned"
+         				to stage = "Work Order In Progress"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+        			}
+    			}
+    			service_request_management as "Service Request Management"
+    			{
+        			type = Blueprint
+        			form = service_requests
+        			start
+        			{
+            			start stage = "Service Request Created"
+        			}
+        			stages
+        			{
+           			"Service Request Created"
+           			{
+           			}
+           			"Request Assigned"
+           			{
+           			}
+           			"Request Cancelled"
+           			{
+           			}
+           			"Request In Progress"
+           			{
+           			}
+           			"Request On Hold"
+           			{
+           			}
+           			"Request Resolved"
+           			{
+           			}
+           			"Request Escalated"
+           			{
+           			}
+           			"Request Closed"
+           			{
+           			}
+           			"Request Reopened"
+           			{
+           			}
+        			}
+        			transitions
+        			{
+    				assign_request as "Assign Request to Agent"
+    				{
+         				type = normal
+         				from stage = "Service Request Created"
+         				to stage = "Request Assigned"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				cancel_request as "Cancel Request"
+    				{
+         				type = normal
+         				from stage = "Service Request Created"
+         				to stage = "Request Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				close_request as "Close Request"
+    				{
+         				type = normal
+         				from stage = "Request Resolved"
+         				to stage = "Request Closed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				continue_request as "Continue Working on Request"
+    				{
+         				type = normal
+         				from stage = "Request Reopened"
+         				to stage = "Request In Progress"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				escalate_request as "Escalate Request"
+    				{
+         				type = normal
+         				from stage = "Request In Progress"
+         				to stage = "Request Escalated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				handle_escalated_request as "Continue Handling Escalated Request"
+    				{
+         				type = normal
+         				from stage = "Request Escalated"
+         				to stage = "Request In Progress"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				hold_request as "Put Request On Hold"
+    				{
+         				type = normal
+         				from stage = "Request In Progress"
+         				to stage = "Request On Hold"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reopen_request as "Reopen Request if Necessary"
+    				{
+         				type = normal
+         				from stage = "Request Resolved"
+         				to stage = "Request Reopened"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				resolve_request as "Resolve Request"
+    				{
+         				type = normal
+         				from stage = "Request In Progress"
+         				to stage = "Request Resolved"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				resume_request as "Resume Request Processing"
+    				{
+         				type = normal
+         				from stage = "Request On Hold"
+         				to stage = "Request In Progress"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				start_request as "Start Working on Request"
+    				{
+         				type = normal
+         				from stage = "Request Assigned"
+         				to stage = "Request In Progress"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+        			}
+    			}
+		}
+
+
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Customer Relations Specialist"
+			{
+				name = "Customer Relations Specialist"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Focuses on customer interactions and feedback management \n"
+				ModulePermissions
+				{
+					service_requests
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							service_requests_Report={"View","Edit","Delete"}
+							service_requests_by_service_type={"View","Edit","Delete"}
+						}
+					}
+					customers
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							customers_Report={"View","Edit","Delete"}
+							customers_by_sync_status={"View","Edit","Delete"}
+						}
+					}
+					ai_intake_log
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							ai_intake_log_by_service_type={"View","Edit","Delete"}
+							ai_intake_log_Report={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Operations Supervisor"
+			{
+				name = "Operations Supervisor"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Oversees daily operations and technician performance \n"
+				ModulePermissions
+				{
+					service_requests
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							service_requests_Report={"View","Edit","Delete"}
+							service_requests_by_service_type={"View","Edit","Delete"}
+						}
+					}
+					technicians
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							technicians_by_role={"View","Edit","Delete"}
+							technicians_Report={"View","Edit","Delete"}
+						}
+					}
+					work_orders
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							work_orders_Report={"View","Edit","Delete"}
+							work_orders_by_service_type={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Service Coordinator"
+			{
+				name = "Service Coordinator"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Responsible for managing service requests and ensuring timely responses \n"
+				ModulePermissions
+				{
+					service_requests
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							service_requests_Report={"View","Edit","Delete"}
+							service_requests_by_service_type={"View","Edit","Delete"}
+						}
+					}
+					customers
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							customers_Report={"View","Edit","Delete"}
+							customers_by_sync_status={"View","Edit","Delete"}
+						}
+					}
+					ai_intake_log
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							ai_intake_log_by_service_type={"View","Edit","Delete"}
+							ai_intake_log_Report={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Developer"
+			{
+				name = "Developer"
+				type = Developer
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Developer Profile\n"
+			}
+			"Financial Analyst"
+			{
+				name = "Financial Analyst"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Handles financial tracking and reporting for service operations \n"
+				ModulePermissions
+				{
+					invoices
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							invoices_by_status={"View","Edit","Delete"}
+							invoices_Report={"View","Edit","Delete"}
+						}
+					}
+					quotes
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							quotes_by_service_type={"View","Edit","Delete"}
+							quotes_Report={"View","Edit","Delete"}
+						}
+					}
+					expenses
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							expenses_by_category={"View","Edit","Delete"}
+							expenses_Report={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			"Vendor"
+			{
+				name = "Vendor"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Interacts with the application to manage service-related expenses \n"
+				ModulePermissions
+				{
+					work_orders
+					{
+						enabled= Viewall,Modifyall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							work_orders_Report={"View","Edit","Delete"}
+							work_orders_by_service_type={"View","Edit","Delete"}
+						}
+					}
+					expenses
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							expenses_by_category={"View","Edit","Delete"}
+							expenses_Report={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+
+	web
+	{
+		forms
+		{
+			form ai_intake_log
+			{
+				label placement = left
+			}
+			form customers
+			{
+				label placement = left
+			}
+			form expenses
+			{
+				label placement = left
+			}
+			form invoices
+			{
+				label placement = left
+			}
+			form quote_line_items
+			{
+				label placement = left
+			}
+			form quotes
+			{
+				label placement = left
+			}
+			form service_requests
+			{
+				label placement = left
+			}
+			form system_counters
+			{
+				label placement = left
+			}
+			form technicians
+			{
+				label placement = left
+			}
+			form work_orders
+			{
+				label placement = left
+			}
+		}
+		reports
+		{
+			report quotes_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								quote_id as "Quote ID"
+								customer as "Customer"
+								service_request as "Service Request"
+								service_type as "Service Type"
+								status as "Status"
+								subtotal as "Subtotal"
+								tax_total as "Tax Total"
+								grand_total as "Grand Total"
+								books_estimate_id as "Books Estimate ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								quote_id as "Quote ID"
+								customer as "Customer"
+								service_request as "Service Request"
+								service_type as "Service Type"
+								status as "Status"
+								subtotal as "Subtotal"
+								tax_total as "Tax Total"
+								grand_total as "Grand Total"
+								books_estimate_id as "Books Estimate ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Customer"
+		     				related field = customer
+							fields
+							(
+								customer_id as "Customer ID"
+								first_name1 as "First Name"
+								last_name1 as "Last Name"
+								phone as "Phone"
+								email as "Email"
+								address_text as "Address Text"
+								customer_type as "Customer Type"
+								crm_contact_id as "CRM Contact ID"
+								crm_account_id as "CRM Account ID"
+								books_contact_id as "Books Contact ID"
+								fsm_contact_id as "FSM Contact ID"
+								sync_status as "Sync Status"
+								sync_error as "Sync Error"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+						datablock3
+						(
+							layout type = -2
+		     				title = "Service Request"
+		     				related field = service_request
+							fields
+							(
+								request_id as "Request ID"
+								customer as "Customer"
+								service_type as "Service Type"
+								urgency as "Urgency"
+								preferred_window as "Preferred Window"
+								request_summary as "Request Summary"
+								status as "Status"
+								quote_id as "Quote ID"
+								work_order_id as "Work Order ID"
+								crm_deal_id as "CRM Deal ID"
+								fsm_work_order_id as "FSM Work Order ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report quotes_by_service_type
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								quote_id as "Quote ID"
+								books_estimate_id as "Books Estimate ID"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								quote_id as "Quote ID"
+								customer as "Customer"
+								service_request as "Service Request"
+								service_type as "Service Type"
+								status as "Status"
+								subtotal as "Subtotal"
+								tax_total as "Tax Total"
+								grand_total as "Grand Total"
+								books_estimate_id as "Books Estimate ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report invoices_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								invoice_id as "Invoice ID"
+								customer as "Customer"
+								work_order as "Work Order"
+								status as "Status"
+								total as "Total"
+								balance_due as "Balance Due"
+								books_invoice_id as "Books Invoice ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								invoice_id as "Invoice ID"
+								customer as "Customer"
+								work_order as "Work Order"
+								status as "Status"
+								total as "Total"
+								balance_due as "Balance Due"
+								books_invoice_id as "Books Invoice ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Customer"
+		     				related field = customer
+							fields
+							(
+								customer_id as "Customer ID"
+								first_name1 as "First Name"
+								last_name1 as "Last Name"
+								phone as "Phone"
+								email as "Email"
+								address_text as "Address Text"
+								customer_type as "Customer Type"
+								crm_contact_id as "CRM Contact ID"
+								crm_account_id as "CRM Account ID"
+								books_contact_id as "Books Contact ID"
+								fsm_contact_id as "FSM Contact ID"
+								sync_status as "Sync Status"
+								sync_error as "Sync Error"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+						datablock3
+						(
+							layout type = -2
+		     				title = "Work Order"
+		     				related field = work_order
+							fields
+							(
+								work_order_id as "Work Order ID"
+								customer as "Customer"
+								service_request as "Service Request"
+								service_type as "Service Type"
+								status as "Status"
+								assigned_tech as "Assigned Tech"
+								scheduled_start as "Scheduled Start"
+								arrival_window as "Arrival Window"
+								completion_notes as "Completion Notes"
+								completion_summary as "Completion Summary"
+								grand_total as "Grand Total"
+								books_invoice_id as "Books Invoice ID"
+								fsm_native_work_order_id as "FSM Native Work Order ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report invoices_by_status
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								invoice_id as "Invoice ID"
+								books_invoice_id as "Books Invoice ID"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								invoice_id as "Invoice ID"
+								customer as "Customer"
+								work_order as "Work Order"
+								status as "Status"
+								total as "Total"
+								balance_due as "Balance Due"
+								books_invoice_id as "Books Invoice ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report work_orders_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								work_order_id as "Work Order ID"
+								customer as "Customer"
+								service_request as "Service Request"
+								service_type as "Service Type"
+								status as "Status"
+								assigned_tech as "Assigned Tech"
+								scheduled_start as "Scheduled Start"
+								arrival_window as "Arrival Window"
+								completion_notes as "Completion Notes"
+								completion_summary as "Completion Summary"
+								grand_total as "Grand Total"
+								books_invoice_id as "Books Invoice ID"
+								fsm_native_work_order_id as "FSM Native Work Order ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								work_order_id as "Work Order ID"
+								customer as "Customer"
+								service_request as "Service Request"
+								service_type as "Service Type"
+								status as "Status"
+								assigned_tech as "Assigned Tech"
+								scheduled_start as "Scheduled Start"
+								arrival_window as "Arrival Window"
+								completion_notes as "Completion Notes"
+								completion_summary as "Completion Summary"
+								grand_total as "Grand Total"
+								books_invoice_id as "Books Invoice ID"
+								fsm_native_work_order_id as "FSM Native Work Order ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Customer"
+		     				related field = customer
+							fields
+							(
+								customer_id as "Customer ID"
+								first_name1 as "First Name"
+								last_name1 as "Last Name"
+								phone as "Phone"
+								email as "Email"
+								address_text as "Address Text"
+								customer_type as "Customer Type"
+								crm_contact_id as "CRM Contact ID"
+								crm_account_id as "CRM Account ID"
+								books_contact_id as "Books Contact ID"
+								fsm_contact_id as "FSM Contact ID"
+								sync_status as "Sync Status"
+								sync_error as "Sync Error"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+						datablock3
+						(
+							layout type = -2
+		     				title = "Service Request"
+		     				related field = service_request
+							fields
+							(
+								request_id as "Request ID"
+								customer as "Customer"
+								service_type as "Service Type"
+								urgency as "Urgency"
+								preferred_window as "Preferred Window"
+								request_summary as "Request Summary"
+								status as "Status"
+								quote_id as "Quote ID"
+								work_order_id as "Work Order ID"
+								crm_deal_id as "CRM Deal ID"
+								fsm_work_order_id as "FSM Work Order ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report work_orders_by_service_type
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								work_order_id as "Work Order ID"
+								assigned_tech as "Assigned Tech"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								work_order_id as "Work Order ID"
+								customer as "Customer"
+								service_request as "Service Request"
+								service_type as "Service Type"
+								status as "Status"
+								assigned_tech as "Assigned Tech"
+								scheduled_start as "Scheduled Start"
+								arrival_window as "Arrival Window"
+								completion_notes as "Completion Notes"
+								completion_summary as "Completion Summary"
+								grand_total as "Grand Total"
+								books_invoice_id as "Books Invoice ID"
+								fsm_native_work_order_id as "FSM Native Work Order ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report service_requests_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								request_id as "Request ID"
+								customer as "Customer"
+								service_type as "Service Type"
+								urgency as "Urgency"
+								preferred_window as "Preferred Window"
+								request_summary as "Request Summary"
+								status as "Status"
+								quote_id as "Quote ID"
+								work_order_id as "Work Order ID"
+								crm_deal_id as "CRM Deal ID"
+								fsm_work_order_id as "FSM Work Order ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								request_id as "Request ID"
+								customer as "Customer"
+								service_type as "Service Type"
+								urgency as "Urgency"
+								preferred_window as "Preferred Window"
+								request_summary as "Request Summary"
+								status as "Status"
+								quote_id as "Quote ID"
+								work_order_id as "Work Order ID"
+								crm_deal_id as "CRM Deal ID"
+								fsm_work_order_id as "FSM Work Order ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Customer"
+		     				related field = customer
+							fields
+							(
+								customer_id as "Customer ID"
+								first_name1 as "First Name"
+								last_name1 as "Last Name"
+								phone as "Phone"
+								email as "Email"
+								address_text as "Address Text"
+								customer_type as "Customer Type"
+								crm_contact_id as "CRM Contact ID"
+								crm_account_id as "CRM Account ID"
+								books_contact_id as "Books Contact ID"
+								fsm_contact_id as "FSM Contact ID"
+								sync_status as "Sync Status"
+								sync_error as "Sync Error"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report service_requests_by_service_type
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								request_id as "Request ID"
+								preferred_window as "Preferred Window"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								request_id as "Request ID"
+								customer as "Customer"
+								service_type as "Service Type"
+								urgency as "Urgency"
+								preferred_window as "Preferred Window"
+								request_summary as "Request Summary"
+								status as "Status"
+								quote_id as "Quote ID"
+								work_order_id as "Work Order ID"
+								crm_deal_id as "CRM Deal ID"
+								fsm_work_order_id as "FSM Work Order ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report ai_intake_log_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								channel as "Channel"
+								customer_name as "Customer Name"
+								phone as "Phone"
+								email as "Email"
+								address_text as "Address Text"
+								service_type as "Service Type"
+								urgency as "Urgency"
+								preferred_window as "Preferred Window"
+								request_summary as "Request Summary"
+								transcript as "Transcript"
+								chat_session_id as "Chat Session ID"
+								ai_confidence as "AI Confidence"
+								status as "Status"
+								assigned_to as "Assigned To"
+								escalation_flag as "Escalation Flag"
+								escalation_reason as "Escalation Reason"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								channel as "Channel"
+								customer_name as "Customer Name"
+								phone as "Phone"
+								email as "Email"
+								address_text as "Address Text"
+								service_type as "Service Type"
+								urgency as "Urgency"
+								preferred_window as "Preferred Window"
+								request_summary as "Request Summary"
+								transcript as "Transcript"
+								chat_session_id as "Chat Session ID"
+								ai_confidence as "AI Confidence"
+								status as "Status"
+								assigned_to as "Assigned To"
+								escalation_flag as "Escalation Flag"
+								escalation_reason as "Escalation Reason"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report ai_intake_log_by_service_type
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								customer_name as "Customer Name"
+								preferred_window as "Preferred Window"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								channel as "Channel"
+								customer_name as "Customer Name"
+								phone as "Phone"
+								email as "Email"
+								address_text as "Address Text"
+								service_type as "Service Type"
+								urgency as "Urgency"
+								preferred_window as "Preferred Window"
+								request_summary as "Request Summary"
+								transcript as "Transcript"
+								chat_session_id as "Chat Session ID"
+								ai_confidence as "AI Confidence"
+								status as "Status"
+								assigned_to as "Assigned To"
+								escalation_flag as "Escalation Flag"
+								escalation_reason as "Escalation Reason"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report customers_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								customer_id as "Customer ID"
+								first_name1 as "First Name"
+								last_name1 as "Last Name"
+								phone as "Phone"
+								email as "Email"
+								address_text as "Address Text"
+								customer_type as "Customer Type"
+								crm_contact_id as "CRM Contact ID"
+								crm_account_id as "CRM Account ID"
+								books_contact_id as "Books Contact ID"
+								fsm_contact_id as "FSM Contact ID"
+								sync_status as "Sync Status"
+								sync_error as "Sync Error"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								customer_id as "Customer ID"
+								first_name1 as "First Name"
+								last_name1 as "Last Name"
+								phone as "Phone"
+								email as "Email"
+								address_text as "Address Text"
+								customer_type as "Customer Type"
+								crm_contact_id as "CRM Contact ID"
+								crm_account_id as "CRM Account ID"
+								books_contact_id as "Books Contact ID"
+								fsm_contact_id as "FSM Contact ID"
+								sync_status as "Sync Status"
+								sync_error as "Sync Error"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report customers_by_sync_status
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								first_name1 as "First Name"
+								last_name1 as "Last Name"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								customer_id as "Customer ID"
+								first_name1 as "First Name"
+								last_name1 as "Last Name"
+								phone as "Phone"
+								email as "Email"
+								address_text as "Address Text"
+								customer_type as "Customer Type"
+								crm_contact_id as "CRM Contact ID"
+								crm_account_id as "CRM Account ID"
+								books_contact_id as "Books Contact ID"
+								fsm_contact_id as "FSM Contact ID"
+								sync_status as "Sync Status"
+								sync_error as "Sync Error"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report quote_line_items_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								quote as "Quote"
+								line_description as "Line Description"
+								quantity as "Quantity"
+								unit_price as "Unit Price"
+								tax_amount as "Tax Amount"
+								line_total as "Line Total"
+								optional_item as "Optional Item"
+								selected_by_customer as "Selected By Customer"
+								sort_order as "Sort Order"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								quote as "Quote"
+								line_description as "Line Description"
+								quantity as "Quantity"
+								unit_price as "Unit Price"
+								tax_amount as "Tax Amount"
+								line_total as "Line Total"
+								optional_item as "Optional Item"
+								selected_by_customer as "Selected By Customer"
+								sort_order as "Sort Order"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Quote"
+		     				related field = quote
+							fields
+							(
+								quote_id as "Quote ID"
+								customer as "Customer"
+								service_request as "Service Request"
+								service_type as "Service Type"
+								status as "Status"
+								subtotal as "Subtotal"
+								tax_total as "Tax Total"
+								grand_total as "Grand Total"
+								books_estimate_id as "Books Estimate ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report system_counters_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								counter_name as "Counter Name"
+								prefix1 as "Prefix"
+								next_number as "Next Number"
+								pad_length as "Pad Length"
+								active as "Active"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								counter_name as "Counter Name"
+								prefix1 as "Prefix"
+								next_number as "Next Number"
+								pad_length as "Pad Length"
+								active as "Active"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report expenses_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								expense_name as "Expense Name"
+								vendor as "Vendor"
+								category as "Category"
+								amount as "Amount"
+								date_1 as "Date"
+								receipt as "Receipt"
+								related_work_order as "Related Work Order"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								expense_name as "Expense Name"
+								vendor as "Vendor"
+								category as "Category"
+								amount as "Amount"
+								date_1 as "Date"
+								receipt as "Receipt"
+								related_work_order as "Related Work Order"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Related Work Order"
+		     				related field = related_work_order
+							fields
+							(
+								work_order_id as "Work Order ID"
+								customer as "Customer"
+								service_request as "Service Request"
+								service_type as "Service Type"
+								status as "Status"
+								assigned_tech as "Assigned Tech"
+								scheduled_start as "Scheduled Start"
+								arrival_window as "Arrival Window"
+								completion_notes as "Completion Notes"
+								completion_summary as "Completion Summary"
+								grand_total as "Grand Total"
+								books_invoice_id as "Books Invoice ID"
+								fsm_native_work_order_id as "FSM Native Work Order ID"
+								last_sync_source as "Last Sync Source"
+								last_sync_time as "Last Sync Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report expenses_by_category
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								expense_name as "Expense Name"
+								vendor as "Vendor"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								expense_name as "Expense Name"
+								vendor as "Vendor"
+								category as "Category"
+								amount as "Amount"
+								date_1 as "Date"
+								receipt as "Receipt"
+								related_work_order as "Related Work Order"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report technicians_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								tech_name as "Tech Name"
+								phone as "Phone"
+								role as "Role"
+								clock_status as "Clock Status"
+								notes as "Notes"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								tech_name as "Tech Name"
+								phone as "Phone"
+								role as "Role"
+								clock_status as "Clock Status"
+								notes as "Notes"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report technicians_by_role
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								tech_name as "Tech Name"
+								phone as "Phone"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								tech_name as "Tech Name"
+								phone as "Phone"
+								role as "Role"
+								clock_status as "Clock Status"
+								notes as "Notes"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+		}
+		menu
+		{
+			space Space
+			{
+				displayname = "Space"
+				icon = "objects-spaceship"
+
+				section Section_1
+				{
+					displayname = "Dashboard"
+					icon = "ui-1-dashboard-half"
+					page DashBoard
+					{
+						icon = "ui-1-dashboard-half"
+					}
+				}
+				section Section_2
+				{
+					displayname = "Quotes"
+					icon = "users-2-a-edit"
+					form  quotes
+					{
+						icon = "ui-1-bold-add"
+					}
+					report quotes_Report
+					{
+						icon = "travel-world"
+					}
+					report quotes_by_service_type
+					{
+						icon = "travel-church"
+					}
+				}
+				section Section_3
+				{
+					displayname = "Invoices"
+					icon = "shopping-receipt"
+					form  invoices
+					{
+						icon = "ui-1-bold-add"
+					}
+					report invoices_Report
+					{
+						icon = "travel-world"
+					}
+					report invoices_by_status
+					{
+						icon = "design-2-selection"
+					}
+				}
+				section Section_4
+				{
+					displayname = "Work Orders"
+					icon = "sport-cardio"
+					form  work_orders
+					{
+						icon = "ui-1-bold-add"
+					}
+					report work_orders_Report
+					{
+						icon = "sport-cardio"
+					}
+					report work_orders_by_service_type
+					{
+						icon = "travel-church"
+					}
+				}
+				section Section_5
+				{
+					displayname = "Service Requests"
+					icon = "business-scale"
+					form  service_requests
+					{
+						icon = "ui-1-bold-add"
+					}
+					report service_requests_Report
+					{
+						icon = "travel-world"
+					}
+					report service_requests_by_service_type
+					{
+						icon = "travel-church"
+					}
+				}
+				section Section_6
+				{
+					displayname = "Ai Intake Logs"
+					icon = "envir-waste-recycling"
+					form  ai_intake_log
+					{
+						icon = "ui-1-bold-add"
+					}
+					report ai_intake_log_Report
+					{
+						icon = "travel-world"
+					}
+					report ai_intake_log_by_service_type
+					{
+						icon = "travel-church"
+					}
+				}
+				section Section_7
+				{
+					displayname = "Customers"
+					icon = "shopping-mobile-card"
+					form  customers
+					{
+						icon = "ui-1-bold-add"
+					}
+					report customers_Report
+					{
+						icon = "travel-world"
+					}
+					report customers_by_sync_status
+					{
+						icon = "users-2-a-sync"
+					}
+				}
+				section Section_8
+				{
+					displayname = "Quote Line Items"
+					icon = "shopping-cart-simple"
+					form  quote_line_items
+					{
+						icon = "ui-1-bold-add"
+					}
+					report quote_line_items_Report
+					{
+						icon = "shopping-cart-simple"
+					}
+				}
+				section Section_9
+				{
+					displayname = "System Counters"
+					icon = "tech-laptop"
+					form  system_counters
+					{
+						icon = "ui-1-bold-add"
+					}
+					report system_counters_Report
+					{
+						icon = "travel-world"
+					}
+				}
+				section Section_10
+				{
+					displayname = "Expenses"
+					icon = "business-currency-dollar"
+					form  expenses
+					{
+						icon = "ui-1-bold-add"
+					}
+					report expenses_Report
+					{
+						icon = "travel-world"
+					}
+					report expenses_by_category
+					{
+						icon = "design-2-selection"
+					}
+				}
+				section Section_11
+				{
+					displayname = "Technicians"
+					icon = "health-flask"
+					form  technicians
+					{
+						icon = "ui-1-bold-add"
+					}
+					report technicians_Report
+					{
+						icon = "travel-world"
+					}
+					report technicians_by_role
+					{
+						icon = "media-1-play-69"
+					}
+				}
+				section ZC_App_Preferences
+				{
+					displayname = "App Preferences"
+					icon = "design-app"
+					systemcomponent
+					{
+						type = localization
+						displayname = "Language Selection"
+						icon = "education-language"
+					}
+					systemcomponent
+					{
+						type = connection
+						displayname = "Integrations"
+						icon = "tech-2-connection"
+					}
+				}
+				section ZC_Approvals
+				{
+					displayname = "Approvals"
+					icon = "ui-2-hourglass"
+					systemcomponent
+					{
+						type = approval
+						approval status = pending
+						displayname = "Pending Tasks"
+						icon = "ui-2-hourglass"
+					}
+					systemcomponent
+					{
+						type = approval
+						approval status = completed
+						displayname = "Completed Tasks"
+						icon = "design-todo"
+					}
+				}
+				section SharedAnalytics_Section
+				{
+					type = shared_user_report_section
+					displayname = "Reports"
+					icon = "business-chart-bar-33"
+				}
+			}
+			preference
+			{
+				icon
+				{
+					style = solid
+					show = {space,section,component}
+				}
+			}
+		}
+		customize
+		{
+			new theme = 11
+			font = "poppins"
+			color options
+			{
+				color = "4"
+			}
+			logo
+			{
+				preference = "none"
+				placement = "left"
+			}
+		}
+	}
+	phone
+	{
+		forms
+		{
+			form ai_intake_log
+			{
+				label placement = auto
+			}
+			form customers
+			{
+				label placement = auto
+			}
+			form expenses
+			{
+				label placement = auto
+			}
+			form invoices
+			{
+				label placement = auto
+			}
+			form quote_line_items
+			{
+				label placement = auto
+			}
+			form quotes
+			{
+				label placement = auto
+			}
+			form service_requests
+			{
+				label placement = auto
+			}
+			form system_counters
+			{
+				label placement = auto
+			}
+			form technicians
+			{
+				label placement = auto
+			}
+			form work_orders
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "1"
+			color options
+			{
+				color = darkgrey
+			}
+			logo
+			{
+				preference = "company_logo"
+			}
+		}
+	}
+	tablet
+	{
+		forms
+		{
+			form ai_intake_log
+			{
+				label placement = auto
+			}
+			form customers
+			{
+				label placement = auto
+			}
+			form expenses
+			{
+				label placement = auto
+			}
+			form invoices
+			{
+				label placement = auto
+			}
+			form quote_line_items
+			{
+				label placement = auto
+			}
+			form quotes
+			{
+				label placement = auto
+			}
+			form service_requests
+			{
+				label placement = auto
+			}
+			form system_counters
+			{
+				label placement = auto
+			}
+			form technicians
+			{
+				label placement = auto
+			}
+			form work_orders
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "1"
+			color options
+			{
+				color = darkgrey
+			}
+			logo
+			{
+				preference = "company_logo"
+			}
+		}
+	}
+	translation
+{
+{"Language_Settings":{"LANGAGUE_WITH_LOGIN":"browser"}}
+}
+}
