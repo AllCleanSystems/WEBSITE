@@ -1,0 +1,13 @@
+run = "npm run replit"
+entrypoint = "app/page.tsx"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["npm", "run", "build"]
+deploymentTarget = "autoscale"
+
+[[ports]]
+localPort = 3000
+externalPort = 80

@@ -1,0 +1,194 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id              String          @id @default(cuid())
+  name            String
+  email           String?
+  phone           String?
+  address         String?
+  notes           String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  workOrders      WorkOrder[]
+  leads           Lead[]
+  serviceRequests ServiceRequest[]
+  quotes          Quote[]
+  invoices        Invoice[]
+  recurringJobs   RecurringJob[]
+}
+
+model Lead {
+  id          String   @id @default(cuid())
+  name        String
+  source      String   @default("Web")
+  status      String   @default("New")
+  email       String?
+  phone       String?
+  notes       String?
+  customerId  String?
+  customer    Customer? @relation(fields: [customerId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model WorkOrder {
+  id                String           @id @default(cuid())
+  title             String
+  status            String           @default("Scheduled")
+  priority          String           @default("Medium")
+  scheduledDate     DateTime?
+  notes             String?
+  customerId        String
+  customer          Customer         @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  serviceRequests   ServiceRequest[]
+  quotes            Quote[]
+  invoices          Invoice[]
+  checklistRuns     ChecklistRun[]
+  assignments       WorkOrderAssignment[]
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+}
+
+model ServiceRequest {
+  id            String    @id @default(cuid())
+  title         String
+  status        String    @default("Open")
+  priority      String    @default("Medium")
+  description   String?
+  customerId    String
+  customer      Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  workOrderId   String?
+  workOrder     WorkOrder? @relation(fields: [workOrderId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Quote {
+  id            String    @id @default(cuid())
+  quoteNumber   String    @unique
+  status        String    @default("Draft")
+  amountCents   Int       @default(0)
+  customerId    String
+  customer      Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  workOrderId   String?
+  workOrder     WorkOrder? @relation(fields: [workOrderId], references: [id])
+  notes         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  invoices      Invoice[]
+}
+
+model Invoice {
+  id            String    @id @default(cuid())
+  invoiceNumber String    @unique
+  status        String    @default("Draft")
+  amountCents   Int       @default(0)
+  dueDate       DateTime?
+  customerId    String
+  customer      Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  workOrderId   String?
+  workOrder     WorkOrder? @relation(fields: [workOrderId], references: [id])
+  quoteId       String?
+  quote         Quote?    @relation(fields: [quoteId], references: [id])
+  notes         String?
+  payments      Payment[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Technician {
+  id            String               @id @default(cuid())
+  name          String
+  email         String?
+  phone         String?
+  status        String               @default("Available")
+  skillTags     String?
+  assignments   WorkOrderAssignment[]
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+}
+
+model WorkOrderAssignment {
+  id            String      @id @default(cuid())
+  workOrderId   String
+  technicianId  String
+  assignedAt    DateTime    @default(now())
+  note          String?
+  workOrder     WorkOrder   @relation(fields: [workOrderId], references: [id], onDelete: Cascade)
+  technician    Technician  @relation(fields: [technicianId], references: [id], onDelete: Cascade)
+}
+
+model RecurringJob {
+  id               String    @id @default(cuid())
+  title            String
+  customerId       String
+  frequency        String    @default("Weekly")
+  intervalCount    Int       @default(1)
+  nextRunAt        DateTime
+  priority         String    @default("Medium")
+  active           Boolean   @default(true)
+  notes            String?
+  customer         Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+model Payment {
+  id              String    @id @default(cuid())
+  invoiceId       String
+  amountCents     Int
+  method          String    @default("Card")
+  status          String    @default("Captured")
+  externalRef     String?
+  receivedAt      DateTime  @default(now())
+  notes           String?
+  invoice         Invoice   @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  createdAt       DateTime  @default(now())
+}
+
+model ChecklistTemplate {
+  id          String          @id @default(cuid())
+  name        String
+  description String?
+  items       ChecklistItem[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model ChecklistItem {
+  id            String            @id @default(cuid())
+  templateId    String
+  template      ChecklistTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  label         String
+  required      Boolean           @default(true)
+  sortOrder     Int               @default(0)
+}
+
+model ChecklistRun {
+  id            String     @id @default(cuid())
+  workOrderId   String
+  workOrder     WorkOrder  @relation(fields: [workOrderId], references: [id], onDelete: Cascade)
+  status        String     @default("Not Started")
+  completionPct Int        @default(0)
+  notes         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+model AutomationEvent {
+  id          String   @id @default(cuid())
+  eventType   String
+  entityType  String
+  entityId    String
+  message     String
+  success     Boolean  @default(true)
+  metadata    String?
+  createdAt   DateTime @default(now())
+}
