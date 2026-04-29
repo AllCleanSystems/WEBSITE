@@ -2,15 +2,15 @@
 // acs-components.jsx
 
 const C = {
-  navy:       '#0C3B66',
-  navyMid:    '#16507F',
+  navy:       '#0E4F86',
+  navyMid:    '#0C3F6B',
   navyLight:  '#E8F2FB',
   white:      '#FFFFFF',
-  pink:       '#2FA36B',
-  pinkHover:  '#248A59',
+  pink:       '#3A6F4D',
+  pinkHover:  '#2F5C40',
   pinkLight:  '#E6F7EF',
-  green:      '#2FA36B',
-  greenMid:   '#248A59',
+  green:      '#3A6F4D',
+  greenMid:   '#2F5C40',
   greenLight: '#E6F7EF',
   black:      '#000000',
   charcoal:   '#111827',
@@ -246,9 +246,7 @@ function SiteNav({ page, onNav, onChatOpen }) {
     <nav style={{ background: C.navy, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', position: 'sticky', top: 0, zIndex: 200, boxShadow: '0 2px 16px rgba(0,0,0,0.35)' }}>
       {/* Logo */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', marginRight: 28, flexShrink: 0 }} onClick={() => onNav('home')}>
-        <div style={{ width: 34, height: 34, background: C.pink, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Icon name="check" size={17} color="#fff" sw={2.5}/>
-        </div>
+        <img src="uploads/acs-logo.jpeg" alt="All Clean Solutions logo" style={{ width: 42, height: 42, objectFit: 'cover', borderRadius: 8, border: '1px solid rgba(255,255,255,0.25)' }} />
         <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 16, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>All Clean Solutions</span>
       </div>
 
@@ -351,9 +349,7 @@ function SiteFooter({ onNav }) {
           {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
-              <div style={{ width: 34, height: 34, background: C.pink, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Icon name="check" size={17} color="#fff" sw={2.5}/>
-              </div>
+              <img src="uploads/acs-logo.jpeg" alt="All Clean Solutions logo" style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 8, border: '1px solid rgba(255,255,255,0.25)' }} />
               <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 16, fontWeight: 800, color: '#fff' }}>All Clean Solutions</span>
             </div>
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, maxWidth: 300, marginBottom: 20 }}>
