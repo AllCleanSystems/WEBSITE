@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Route } from "next";
 
-const nav = [
+const nav: Array<{ href: Route; label: string }> = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/areas", label: "Service Areas" },
@@ -20,7 +20,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           </Link>
           <nav className="siteNav">
             {nav.map((n) => (
-              <Link key={n.href} href={n.href as Route}>
+              <Link key={n.href} href={n.href}>
                 {n.label}
               </Link>
             ))}
