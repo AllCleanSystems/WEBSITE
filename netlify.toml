@@ -1,4 +1,4 @@
-﻿[build]
+[build]
   base = "acs-ops-replit"
   command = "npm run build"
   functions = "netlify/functions"
