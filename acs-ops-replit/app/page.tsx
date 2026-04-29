@@ -1,57 +1,112 @@
-import Link from "next/link";
-import { prisma } from "@/lib/prisma";
-import type { Route } from "next";
+"use client";
 
-const quick = [
-  { href: "/customers", label: "Customers" },
-  { href: "/leads", label: "Leads" },
-  { href: "/service-requests", label: "Service Requests" },
-  { href: "/work-orders", label: "Work Orders" },
-  { href: "/dispatch", label: "Dispatch Board" },
-  { href: "/technicians", label: "Technicians" },
-  { href: "/recurring-jobs", label: "Recurring Jobs" },
-  { href: "/quotes-invoices", label: "Quotes & Invoices" },
-  { href: "/payments", label: "Payments" },
-  { href: "/ops-console", label: "Ops Console" },
-  { href: "/admin-autopilot", label: "Admin Autopilot" },
-  { href: "/ai-command-center", label: "AI Command Center" },
-  { href: "/integrations", label: "Integrations" },
-  { href: "/phone", label: "Phone Hub" },
-  { href: "/automation-events", label: "Automation Logs" },
-  { href: "/api/health", label: "API Health" },
-];
+import { useState } from "react";
 
-export default async function HomePage() {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+type ChatMsg = { role: "user" | "assistant"; text: string };
 
-  const [openOrders, pendingInvoices, openRequests, todaysEvents] = await Promise.all([
-    prisma.workOrder.count({ where: { status: { in: ["Unassigned", "Scheduled", "En Route", "On Site", "In Progress", "Ready to Invoice"] } } }),
-    prisma.invoice.count({ where: { status: { in: ["Draft", "Sent", "Overdue"] } } }),
-    prisma.serviceRequest.count({ where: { status: { in: ["Open", "Assigned", "In Progress"] } } }),
-    prisma.automationEvent.count({ where: { createdAt: { gte: today } } }),
+export default function HomePage() {
+  const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [messages, setMessages] = useState<ChatMsg[]>([
+    {
+      role: "assistant",
+      text: "Hi! I'm the All Clean Solutions AI assistant. How can I help with your cleaning request today?",
+    },
   ]);
 
+  async function sendMessage() {
+    const text = input.trim();
+    if (!text || loading) return;
+
+    const next = [...messages, { role: "user" as const, text }];
+    setMessages(next);
+    setInput("");
+    setLoading(true);
+
+    try {
+      const transcript = next.map((m) => `${m.role === "assistant" ? "ACS AI" : "You"}: ${m.text}`).join("\n");
+      const res = await fetch("/.netlify/functions/website-chat-handoff", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: text,
+          chatSessionId: `web_${Date.now()}`,
+          knownIntake: {},
+          intakeAlreadySubmitted: false,
+          chatTranscript: transcript,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      const reply = !res.ok || !data?.ok ? (data?.error || "AI is temporarily unavailable.") : (data.reply || "Thanks. How else can I help?");
+      setMessages((prev) => [...prev, { role: "assistant", text: reply }]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          text: "I'm having trouble connecting right now. Please call (701) 587-1158 and we can help immediately.",
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <main className="wrap">
-      <h1 className="h1">ACS Ops Fast Launch</h1>
-      <p className="muted">Own-stack CRM + FSM with automation-first workflows.</p>
-
-      <section className="grid" style={{ marginTop: 16 }}>
-        <article className="card"><div className="muted">Open Work Orders</div><div className="kpi">{openOrders}</div></article>
-        <article className="card"><div className="muted">Pending Invoices</div><div className="kpi">{pendingInvoices}</div></article>
-        <article className="card"><div className="muted">Open Service Requests</div><div className="kpi">{openRequests}</div></article>
-        <article className="card"><div className="muted">Automation Events Today</div><div className="kpi">{todaysEvents}</div></article>
-      </section>
-
-      <section className="card" style={{ marginTop: 16 }}>
-        <h3>Workspace Navigation</h3>
-        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-          {quick.map((q) => (
-            <Link className="btn" key={q.href} href={q.href as Route}>{q.label}</Link>
-          ))}
+    <main style={{ minHeight: "100vh", background: "#0b1f3a", color: "#fff" }}>
+      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "64px 20px" }}>
+        <h1 style={{ fontSize: 44, marginBottom: 16 }}>All Clean Solutions</h1>
+        <p style={{ fontSize: 20, maxWidth: 700, opacity: 0.92, lineHeight: 1.5 }}>
+          Commercial and residential cleaning services in Bismarck and surrounding areas. Fast quotes, reliable service, and 24/7 emergency response.
+        </p>
+        <div style={{ marginTop: 28, display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <a href="tel:7015871158" style={{ background: "#e8387a", color: "#fff", padding: "12px 18px", borderRadius: 8, textDecoration: "none", fontWeight: 700 }}>
+            Call (701) 587-1158
+          </a>
+          <button onClick={() => setOpen(true)} style={{ background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.45)", padding: "12px 18px", borderRadius: 8, fontWeight: 700, cursor: "pointer" }}>
+            Open AI Assistant
+          </button>
         </div>
       </section>
+
+      {open && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", display: "grid", placeItems: "center", zIndex: 60 }}>
+          <div style={{ width: "min(680px, 95vw)", background: "#fff", color: "#111827", borderRadius: 14, overflow: "hidden" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 16px", background: "#0b1f3a", color: "#fff" }}>
+              <strong>AI Assistant</strong>
+              <button onClick={() => setOpen(false)} style={{ background: "transparent", color: "#fff", border: 0, fontSize: 20, cursor: "pointer" }}>x</button>
+            </div>
+            <div style={{ maxHeight: 360, overflowY: "auto", padding: 14, background: "#f8fafc" }}>
+              {messages.map((m, i) => (
+                <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", marginBottom: 10 }}>
+                  <div style={{ maxWidth: "78%", background: m.role === "user" ? "#e8387a" : "#fff", color: m.role === "user" ? "#fff" : "#111827", border: m.role === "user" ? "none" : "1px solid #e2e8f0", padding: "10px 12px", borderRadius: 10, lineHeight: 1.45 }}>
+                    {m.text}
+                  </div>
+                </div>
+              ))}
+              {loading && <div style={{ fontSize: 13, opacity: 0.8 }}>AI is typing...</div>}
+            </div>
+            <div style={{ display: "flex", gap: 8, padding: 12, borderTop: "1px solid #e2e8f0" }}>
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    sendMessage();
+                  }
+                }}
+                placeholder="Ask about services, pricing, or scheduling"
+                style={{ flex: 1, border: "1px solid #cbd5e1", borderRadius: 8, padding: "10px 12px" }}
+              />
+              <button onClick={sendMessage} disabled={loading || !input.trim()} style={{ background: "#e8387a", color: "#fff", border: 0, borderRadius: 8, padding: "10px 14px", cursor: "pointer", fontWeight: 700 }}>
+                Send
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
