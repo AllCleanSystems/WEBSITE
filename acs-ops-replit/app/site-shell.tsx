@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Route } from "next";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -19,7 +20,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           </Link>
           <nav className="siteNav">
             {nav.map((n) => (
-              <Link key={n.href} href={n.href}>
+              <Link key={n.href} href={n.href as Route}>
                 {n.label}
               </Link>
             ))}
@@ -52,4 +53,3 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-
