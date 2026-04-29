@@ -620,4 +620,68 @@ function TermsPage({ onNav }) {
   );
 }
 
-Object.assign(window, { HomePage, AboutPage, ServiceAreasPage, GalleryPage, ContactPage, PrivacyPage, TermsPage });
+function BlogPage({ onNav }) {
+  const posts = [
+    {
+      title: 'How Often Should Restaurants Schedule Hood Cleaning in Bismarck?',
+      date: 'April 2026',
+      excerpt: 'A practical NFPA-96 schedule guide for restaurant owners, with signs your hood system needs immediate service.',
+      category: 'Hood Cleaning',
+    },
+    {
+      title: 'Commercial Cleaning Checklist for Offices and Retail Spaces',
+      date: 'April 2026',
+      excerpt: 'A simple weekly and monthly cleaning checklist to keep your facility customer-ready and staff-safe.',
+      category: 'Commercial Cleaning',
+    },
+    {
+      title: 'Spring Pressure Washing: What to Clean First',
+      date: 'March 2026',
+      excerpt: 'Prioritize sidewalks, entryways, and dumpster pads first to get the biggest curb-appeal impact fast.',
+      category: 'Pressure Washing',
+    },
+    {
+      title: 'Snow and Ice Liability Basics for ND Property Managers',
+      date: 'February 2026',
+      excerpt: 'What to document after each storm, how to reduce slip-and-fall risk, and why service logs matter.',
+      category: 'Snow Removal',
+    },
+  ];
+
+  return (
+    <div>
+      <PageHero
+        eyebrow="ACS Blog"
+        title="Cleaning tips, service guides, and local updates"
+        subtitle="Helpful articles for business owners and property managers in Bismarck, ND and surrounding communities."
+        size="sm"
+      />
+      <TrustBar />
+
+      <section style={{ padding: '72px 40px', maxWidth: 1120, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
+          {posts.map((post) => (
+            <article key={post.title} style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px' }}>
+              <div style={{ display: 'inline-block', background: C.greenLight, color: C.greenMid, fontSize: 11, fontWeight: 700, padding: '4px 10px', borderRadius: 999, marginBottom: 12 }}>
+                {post.category}
+              </div>
+              <h3 style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 20, fontWeight: 700, color: C.charcoal, lineHeight: 1.3, marginBottom: 8 }}>
+                {post.title}
+              </h3>
+              <p style={{ fontSize: 12, color: C.muted, marginBottom: 12 }}>{post.date}</p>
+              <p style={{ fontSize: 14, color: C.slate, lineHeight: 1.7, marginBottom: 16 }}>{post.excerpt}</p>
+              <button onClick={() => onNav('contact')} style={{ background: 'none', border: 'none', color: C.navy, fontWeight: 700, fontSize: 13, cursor: 'pointer', padding: 0 }}>
+                Ask about this service →
+              </button>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <CTABanner onNav={onNav} />
+      <SiteFooter onNav={onNav} />
+    </div>
+  );
+}
+
+Object.assign(window, { HomePage, AboutPage, ServiceAreasPage, GalleryPage, ContactPage, PrivacyPage, TermsPage, BlogPage });

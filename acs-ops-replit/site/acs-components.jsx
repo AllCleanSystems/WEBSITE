@@ -246,7 +246,7 @@ function SiteNav({ page, onNav, onChatOpen }) {
     <nav style={{ background: C.navy, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', position: 'sticky', top: 0, zIndex: 200, boxShadow: '0 2px 16px rgba(0,0,0,0.35)' }}>
       {/* Logo */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', marginRight: 28, flexShrink: 0 }} onClick={() => onNav('home')}>
-        <img src="uploads/acs-logo-live.jpeg" alt="All Clean Solutions logo" style={{ width: 42, height: 42, objectFit: 'contain' }} />
+        <img src="uploads/acs-logo-transparent-v2.png" alt="All Clean Solutions logo" style={{ width: 42, height: 42, objectFit: 'contain' }} />
         <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 16, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>All Clean Solutions</span>
       </div>
 
@@ -280,6 +280,7 @@ function SiteNav({ page, onNav, onChatOpen }) {
 
         {navLink('areas', 'Service Areas')}
         {navLink('about', 'About')}
+        {navLink('blog', 'Blog')}
         {navLink('gallery', 'Gallery')}
         {navLink('contact', 'Contact')}
       </div>
@@ -310,7 +311,7 @@ function SiteNav({ page, onNav, onChatOpen }) {
             { k: 'service-pressure', l: 'Pressure Washing' }, { k: 'service-snow', l: 'Snow Removal' },
             { k: 'service-lawn', l: 'Lawn Care' }, { k: 'service-commercial', l: 'Commercial Cleaning' },
             { k: 'service-deep', l: 'Deep Cleaning' }, { k: 'service-degreasing', l: 'Degreasing' },
-            { k: 'areas', l: 'Service Areas' }, { k: 'about', l: 'About' }, { k: 'gallery', l: 'Gallery' }, { k: 'contact', l: 'Contact' },
+            { k: 'areas', l: 'Service Areas' }, { k: 'about', l: 'About' }, { k: 'blog', l: 'Blog' }, { k: 'gallery', l: 'Gallery' }, { k: 'contact', l: 'Contact' },
           ].map(({ k, l }) => (
             <button key={k} onClick={() => { onNav(k); setMenuOpen(false); }} style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', borderBottom: `1px solid rgba(255,255,255,0.08)`, padding: '14px 0', fontSize: 16, color: 'rgba(255,255,255,0.8)', cursor: 'pointer', fontFamily: 'Inter, sans-serif' }}>{l}</button>
           ))}
@@ -349,7 +350,7 @@ function SiteFooter({ onNav }) {
           {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
-              <img src="uploads/acs-logo-live.jpeg" alt="All Clean Solutions logo" style={{ width: 40, height: 40, objectFit: 'contain' }} />
+              <img src="uploads/acs-logo-transparent-v2.png" alt="All Clean Solutions logo" style={{ width: 40, height: 40, objectFit: 'contain' }} />
               <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 16, fontWeight: 800, color: '#fff' }}>All Clean Solutions</span>
             </div>
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, maxWidth: 300, marginBottom: 20 }}>
@@ -376,6 +377,7 @@ function SiteFooter({ onNav }) {
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>Company</div>
             {lnk('About us', 'about')}
+            {lnk('Blog', 'blog')}
             {lnk('Service areas', 'areas')}
             {lnk('Before & After Gallery', 'gallery')}
             {lnk('Contact us', 'contact')}
