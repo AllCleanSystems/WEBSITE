@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SiteShell } from "./site-shell";
 
 type ChatMsg = { role: "user" | "assistant"; text: string };
 
@@ -54,8 +55,9 @@ export default function HomePage() {
   }
 
   return (
-    <main style={{ minHeight: "100vh", background: "#0b1f3a", color: "#fff" }}>
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "64px 20px" }}>
+    <SiteShell>
+      <main style={{ minHeight: "100vh", background: "#0b1f3a", color: "#fff" }}>
+        <section style={{ maxWidth: 1100, margin: "0 auto", padding: "64px 20px" }}>
         <h1 style={{ fontSize: 44, marginBottom: 16 }}>All Clean Solutions</h1>
         <p style={{ fontSize: 20, maxWidth: 700, opacity: 0.92, lineHeight: 1.5 }}>
           Commercial and residential cleaning services in Bismarck and surrounding areas. Fast quotes, reliable service, and 24/7 emergency response.
@@ -68,9 +70,29 @@ export default function HomePage() {
             Open AI Assistant
           </button>
         </div>
-      </section>
+        </section>
 
-      {open && (
+        <section style={{ background: "#f8fafc", color: "#0f172a", padding: "48px 20px" }}>
+          <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gap: 16, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+            {[
+              "Hood & Exhaust Cleaning",
+              "Commercial Cleaning",
+              "Pressure Washing",
+              "Carpet & Window Cleaning",
+              "Snow Removal",
+              "Lawn Care",
+            ].map((service) => (
+              <article key={service} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 10, padding: 16 }}>
+                <h3 style={{ margin: 0, fontSize: 18 }}>{service}</h3>
+                <p style={{ margin: "8px 0 0", color: "#475569" }}>
+                  Reliable, professional service with fast communication and clear scheduling.
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {open && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", display: "grid", placeItems: "center", zIndex: 60 }}>
           <div style={{ width: "min(680px, 95vw)", background: "#fff", color: "#111827", borderRadius: 14, overflow: "hidden" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 16px", background: "#0b1f3a", color: "#fff" }}>
@@ -106,7 +128,8 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      )}
-    </main>
+        )}
+      </main>
+    </SiteShell>
   );
 }

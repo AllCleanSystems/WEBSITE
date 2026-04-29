@@ -28,3 +28,33 @@ input, select, textarea {
   background: #fff;
 }
 @media (max-width: 800px) { .split { grid-template-columns: 1fr; } }
+
+.site { background: #fff; color: #0f172a; }
+.siteHeader { position: sticky; top: 0; z-index: 20; background: #0b1f3a; color: #fff; border-bottom: 1px solid rgba(255,255,255,.1); }
+.siteWrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.navRow { min-height: 68px; display: flex; gap: 14px; align-items: center; justify-content: space-between; }
+.brand { color: #fff; font-weight: 800; font-size: 20px; }
+.siteNav { display: flex; flex-wrap: wrap; gap: 14px; }
+.siteNav a { color: rgba(255,255,255,.82); font-weight: 600; }
+.ctaBtn { color: #fff; background: #e8387a; border-radius: 8px; padding: 10px 14px; font-weight: 700; }
+.siteMain { min-height: calc(100vh - 68px); background: #f8fafc; }
+.siteMain h1 { margin: 0; padding-top: 34px; font-size: 40px; color: #0b1f3a; }
+.lead { margin-top: 12px; color: #475569; font-size: 18px; line-height: 1.6; }
+.cardGrid { margin-top: 20px; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.serviceCard { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; }
+.serviceCard h3 { margin: 0 0 8px; }
+.serviceCard p { margin: 0; color: #475569; line-height: 1.6; }
+.twoCol { margin-top: 20px; display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0,1fr)); }
+.areaList { margin: 20px 0 0; padding: 0 0 30px 18px; }
+.areaList li { margin: 8px 0; color: #334155; }
+.imgPlaceholder { height: 140px; border-radius: 10px; background: linear-gradient(135deg,#dbeafe,#fde68a); color: #334155; display: grid; place-items: center; font-weight: 700; margin-bottom: 10px; }
+.siteFooter { background: #0b1f3a; color: rgba(255,255,255,.85); margin-top: 30px; }
+.footGrid { padding-top: 28px; padding-bottom: 28px; display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0,1fr)); }
+.siteFooter h4 { color: #fff; margin: 0 0 8px; }
+.siteFooter p { margin: 0 0 8px; line-height: 1.5; }
+
+@media (max-width: 900px) {
+  .siteNav { display: none; }
+  .footGrid, .twoCol { grid-template-columns: 1fr; }
+  .siteMain h1 { font-size: 32px; }
+}
