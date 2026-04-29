@@ -2,8 +2,8 @@
 // acs-components.jsx
 
 const C = {
-  navy:       '#0E4F86',
-  navyMid:    '#0C3F6B',
+  navy:       '#0B1F3A',
+  navyMid:    '#12365E',
   navyLight:  '#E8F2FB',
   white:      '#FFFFFF',
   pink:       '#D98BB3',
