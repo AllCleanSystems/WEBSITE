@@ -246,7 +246,7 @@ function SiteNav({ page, onNav, onChatOpen }) {
     <nav style={{ background: C.navy, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', position: 'sticky', top: 0, zIndex: 200, boxShadow: '0 2px 16px rgba(0,0,0,0.35)' }}>
       {/* Logo */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', marginRight: 28, flexShrink: 0 }} onClick={() => onNav('home')}>
-        <img src="uploads/acs-logo.jpeg" alt="All Clean Solutions logo" style={{ width: 42, height: 42, objectFit: 'cover', borderRadius: 8, border: '1px solid rgba(255,255,255,0.25)' }} />
+        <img src="uploads/acs-logo-transparent.png" alt="All Clean Solutions logo" style={{ width: 42, height: 42, objectFit: 'contain' }} />
         <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 16, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>All Clean Solutions</span>
       </div>
 
@@ -349,7 +349,7 @@ function SiteFooter({ onNav }) {
           {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
-              <img src="uploads/acs-logo.jpeg" alt="All Clean Solutions logo" style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 8, border: '1px solid rgba(255,255,255,0.25)' }} />
+              <img src="uploads/acs-logo-transparent.png" alt="All Clean Solutions logo" style={{ width: 40, height: 40, objectFit: 'contain' }} />
               <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 16, fontWeight: 800, color: '#fff' }}>All Clean Solutions</span>
             </div>
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, maxWidth: 300, marginBottom: 20 }}>
