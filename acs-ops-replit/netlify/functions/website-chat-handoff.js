@@ -1,8 +1,32 @@
-﻿const OPENAI_URL = "https://api.openai.com/v1/responses";
+const OPENAI_URL = "https://api.openai.com/v1/responses";
 const ZOHO_TOKEN_URL = "https://accounts.zoho.com/oauth/v2/token";
+const OPENAI_TIMEOUT_MS = 9000;
 
 function clean(v) {
   return v === null || v === undefined ? "" : String(v).trim();
+}
+
+
+const KB = [
+  { patterns: ["phone", "call", "number", "contact number"], reply: "You can call All Clean Solutions at (701) 587-1158. If you want, I can also help you submit a quote request right now." },
+  { patterns: ["email", "e-mail"], reply: "Our email is info@acsbismarck.com. If you share your service need, I can help you start a quote here in chat." },
+  { patterns: ["service area", "serve", "location", "bismarck", "mandan", "minot", "dickinson", "jamestown"], reply: "We serve Bismarck and nearby communities within about 150 miles, including Mandan, Dickinson, Jamestown, and Minot." },
+  { patterns: ["hood", "nfpa", "restaurant hood"], reply: "Yes, we provide NFPA-96 compliant hood and exhaust cleaning with photo documentation." },
+  { patterns: ["snow", "ice", "plow", "salting"], reply: "Yes, we provide snow removal and ice management, including plowing and salting for commercial properties." },
+  { patterns: ["carpet", "steam clean"], reply: "Yes, we provide commercial carpet cleaning with hot-water extraction and fast dry times." },
+  { patterns: ["window", "windows"], reply: "Yes, we provide interior and exterior window cleaning for commercial properties." },
+  { patterns: ["pressure wash", "pressure washing", "power wash"], reply: "Yes, we provide commercial pressure washing for parking lots, sidewalks, exteriors, and dumpster areas." },
+  { patterns: ["hours", "open", "response time", "how fast"], reply: "We respond quickly and can usually follow up within about 1 hour during business hours. For urgent needs, call (701) 587-1158." },
+  { patterns: ["price", "pricing", "cost", "quote", "estimate"], reply: "Pricing depends on service type, size, and urgency. I can collect details now and get you a fast, no-obligation estimate." }
+];
+
+function findKBReply(message) {
+  const m = clean(message).toLowerCase();
+  if (!m) return null;
+  for (const row of KB) {
+    if (row.patterns.some((p) => m.includes(p))) return row.reply;
+  }
+  return null;
 }
 
 function mapServiceType(value) {
@@ -155,6 +179,9 @@ async function callOpenAI({ instructions, inputText }) {
 
   const model = process.env.OPENAI_MODEL || "gpt-4.1-mini";
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), OPENAI_TIMEOUT_MS);
+
   const r = await fetch(OPENAI_URL, {
     method: "POST",
     headers: {
@@ -165,10 +192,13 @@ async function callOpenAI({ instructions, inputText }) {
       model,
       instructions,
       input: [{ role: "user", content: [{ type: "input_text", text: inputText }] }],
-      max_output_tokens: 380,
-      store: false
-    })
+      max_output_tokens: 220,
+      store: false,
+      prompt_cache_key: "acs-website-agent-v2"
+    }),
+    signal: controller.signal
   });
+  clearTimeout(timeout);
 
   const j = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(j?.error?.message || `OpenAI error (HTTP ${r.status})`);
@@ -186,14 +216,24 @@ exports.handler = async (event) => {
     const chatSessionId = clean(body.chatSessionId);
     const knownIntake = body.knownIntake && typeof body.knownIntake === "object" ? body.knownIntake : {};
     const intakeAlreadySubmitted = Boolean(body.intakeAlreadySubmitted);
-    const chatTranscript = clean(body.chatTranscript);
+    const chatTranscriptRaw = clean(body.chatTranscript);
+    const chatTranscript = chatTranscriptRaw.length > 1400
+      ? chatTranscriptRaw.slice(chatTranscriptRaw.length - 1400)
+      : chatTranscriptRaw;
 
     if (!message) {
       return { statusCode: 400, body: JSON.stringify({ ok: false, error: "Message is required." }) };
     }
 
     const agent = process.env.WEBSITE_AGENT_INSTRUCTIONS ||
-      "You are All Clean Solutions (ACS) website assistant. Ask one concise question at a time.";
+      [
+        "You are the All Clean Solutions (ACS) website sales assistant.",
+        "Business scope only: cleaning services, scheduling, service areas, pricing guidance, and quote intake.",
+        "Never go off-topic. If user asks unrelated topics, politely redirect to ACS services.",
+        "Be concise, accurate, and conversion-focused.",
+        "Ask at most ONE short follow-up question at a time.",
+        "Use plain language and avoid long paragraphs."
+      ].join(" ");
 
     const contract = [
       "Return ONLY valid JSON. No extra text.",
@@ -209,6 +249,21 @@ exports.handler = async (event) => {
       "}"
     ].join("\n");
 
+    const kbReply = findKBReply(message);
+    if (kbReply && !intakeAlreadySubmitted) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          ok: true,
+          reply: kbReply,
+          intake: knownIntake,
+          intakeCreated: false,
+          endChat: false,
+          missing: missingRequired(knownIntake)
+        })
+      };
+    }
+
     const inputText =
       `KNOWN_INTAKE:\n${JSON.stringify(knownIntake)}\n` +
       `intakeAlreadySubmitted: ${intakeAlreadySubmitted ? "true" : "false"}\n\n` +
@@ -223,7 +278,7 @@ exports.handler = async (event) => {
         statusCode: 200,
         body: JSON.stringify({
           ok: true,
-          reply: text || "Thanks. Can you share your name and best contact number?",
+          reply: text || "Thanks. I can help with services, pricing, scheduling, and quote requests. What service do you need?",
           intake: knownIntake,
           intakeCreated: false,
           endChat: false
@@ -302,6 +357,20 @@ exports.handler = async (event) => {
       })
     };
   } catch (e) {
+    const msg = clean(e?.message).toLowerCase();
+    const timeoutLike = msg.includes("aborted") || msg.includes("timeout");
+    if (timeoutLike) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          ok: true,
+          reply: "Thanks for your message. I can still help quickly. What service do you need and what is the property address?",
+          intake: {},
+          intakeCreated: false,
+          endChat: false
+        })
+      };
+    }
     return {
       statusCode: 500,
       body: JSON.stringify({ ok: false, error: e.message || "Server error" })
