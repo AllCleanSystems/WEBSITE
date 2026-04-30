@@ -1,5 +1,20 @@
 const OPENAI_URL = "https://api.openai.com/v1/responses";
 const ZOHO_TOKEN_URL = "https://accounts.zoho.com/oauth/v2/token";
+
+function envFirst(...keys) {
+  for (const k of keys) {
+    const v = process.env[k];
+    if (v && String(v).trim()) return String(v).trim();
+  }
+  return "";
+}
+
+function cleanRefreshToken(raw) {
+  const t = String(raw || "").trim();
+  if (!t) return "";
+  return t.split(/\s+/)[0];
+}
+
 const OPENAI_TIMEOUT_MS = 9000;
 
 function clean(v) {
@@ -128,9 +143,9 @@ function missingRequired(intake) {
 
 async function getZohoAccessToken() {
   const params = new URLSearchParams({
-    refresh_token: process.env.ZOHO_REFRESH_TOKEN,
-    client_id: process.env.ZOHO_CLIENT_ID,
-    client_secret: process.env.ZOHO_CLIENT_SECRET,
+    refresh_token: cleanRefreshToken(envFirst("ZOHO_REFRESH_TOKEN")),
+    client_id: envFirst("ZOHO_CLIENT_ID"),
+    client_secret: envFirst("ZOHO_CLIENT_SECRET"),
     grant_type: "refresh_token"
   });
   const r = await fetch(`${ZOHO_TOKEN_URL}?${params.toString()}`, { method: "POST" });
@@ -140,9 +155,9 @@ async function getZohoAccessToken() {
 }
 
 async function createZohoIntake(intake) {
-  const owner = process.env.ZOHO_ACCOUNT_OWNER_NAME;
-  const app = process.env.ZOHO_APP_LINK_NAME;
-  const form = process.env.ZOHO_FORM_LINK_NAME;
+  const owner = envFirst("ZOHO_ACCOUNT_OWNER_NAME", "ZOHO_CREATOR_OWNER");
+  const app = envFirst("ZOHO_APP_LINK_NAME", "ZOHO_CREATOR_APP_LINK");
+  const form = envFirst("ZOHO_FORM_LINK_NAME", "ZOHO_CREATOR_FORM_LINK", "ZOHO_FORM_NAME");
   if (!owner || !app || !form) {
     throw new Error("Missing Zoho Creator env vars (owner/app/form).");
   }
