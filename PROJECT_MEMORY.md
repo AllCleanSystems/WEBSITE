@@ -36,6 +36,30 @@ Last updated: 2026-04-29
 - User redeploys from Netlify or waits for auto-deploy
 - Keep this file updated every session
 
+## Execution Doctrine (Owner Directive)
+- Priority: production fast
+- North-star goal: full automation setup across website + phone + lead ops
+- Operating mode: maximum execution speed with reliable first-pass outcomes
+
+### Speed/Results Program
+1. Standardize repeat workflows
+- Netlify deploy checklist
+- Env var sync checklist
+- QA smoke test checklist
+2. Convert repeated actions into one-command scripts in repo
+3. Use dual-path execution
+- Assistant handles code + integration updates
+- Owner handles only unavoidable auth/MFA confirmations
+4. Build high-leverage automations
+- Lead intake triage
+- Missed-call follow-up
+- Fast quote prefill
+- Status dashboards
+5. Enforce SLA targets
+- Agent first response < 2s for common intents
+- Lead capture completion < 90s
+- Deploy-to-verification < 10 min
+
 ---
 
 ## Transcript Archive (Session Notes)

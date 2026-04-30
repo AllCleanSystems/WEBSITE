@@ -12,7 +12,10 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:push": "prisma db push",
-    "replit": "npm run prisma:push && npm run dev:replit"
+    "replit": "npm run prisma:push && npm run dev:replit",
+    "ops:env": "powershell -ExecutionPolicy Bypass -File scripts/env-check.ps1",
+    "ops:smoke": "powershell -ExecutionPolicy Bypass -File scripts/qa-smoke.ps1",
+    "ops:release": "powershell -ExecutionPolicy Bypass -File scripts/release-fast.ps1"
   },
   "dependencies": {
     "@prisma/client": "5.22.0",
