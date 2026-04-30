@@ -6,6 +6,14 @@ function clean(v) {
   return v === null || v === undefined ? "" : String(v).trim();
 }
 
+function extractPhoneFromText(text) {
+  const t = clean(text);
+  if (!t) return "";
+  const m = t.match(/(?:\+?1[\s.-]?)?\(?([2-9]\d{2})\)?[\s.-]?([2-9]\d{2})[\s.-]?(\d{4})/);
+  if (!m) return "";
+  return `${m[1]}-${m[2]}-${m[3]}`;
+}
+
 
 const KB = [
   { patterns: ["phone", "call", "number", "contact number"], reply: "You can call All Clean Solutions at (701) 587-1158. If you want, I can also help you submit a quote request right now." },
@@ -237,6 +245,7 @@ exports.handler = async (event) => {
 
     const contract = [
       "Return ONLY valid JSON. No extra text.",
+      "Keep reply under 55 words.",
       "KNOWN_INTAKE fields are already collected. Do NOT ask for them again.",
       "If intakeAlreadySubmitted=true, set create_intake=false.",
       "Required before submit: customer_name, (phone or email), address, service_type, urgency, request_summary, preferred_window.",
@@ -250,12 +259,18 @@ exports.handler = async (event) => {
     ].join("\n");
 
     const kbReply = findKBReply(message);
+    const phoneFromMessage = extractPhoneFromText(message);
+    if (phoneFromMessage && !clean(knownIntake.phone)) {
+      knownIntake.phone = phoneFromMessage;
+    }
     if (kbReply && !intakeAlreadySubmitted) {
       return {
         statusCode: 200,
         body: JSON.stringify({
           ok: true,
-          reply: kbReply,
+          reply: phoneFromMessage
+            ? `${kbReply} I captured your number as ${phoneFromMessage}. What is the service address?`
+            : kbReply,
           intake: knownIntake,
           intakeCreated: false,
           endChat: false,
