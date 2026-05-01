@@ -13,7 +13,7 @@ const TESTIMONIALS = [
 const HOME_FAQS = [
   { q: 'What areas of North Dakota do you serve?', a: 'We serve Bismarck and surrounding communities within approximately 150 miles, including Mandan, Dickinson, Jamestown, Minot, Watford City, Beulah, Hazen, Garrison, and more. Contact us if you\'re unsure whether your location is in our service area.' },
   { q: 'Are you licensed and insured?', a: 'Yes. All Clean Solutions is fully licensed in North Dakota and carries general liability insurance and workers\' compensation coverage. We can provide certificates of insurance upon request.' },
-  { q: 'How do I schedule a service?', a: 'Fill out our online request form, call us directly at (701) 587-1158, or chat with our AI assistant. We respond to all quote requests within 1 business hour during normal business hours.' },
+  { q: 'How do I schedule a service?', a: 'Fill out our online request form, call us directly at (701) 587-1158, or chat with our AI assistant. Submitting a quote request allows All Clean Solutions to contact you about that request by phone or email. SMS texts are only sent if you separately opt in on the quote form.' },
   { q: 'How much does hood cleaning cost?', a: 'Hood cleaning pricing depends on the size of your system, grease buildup level, and service frequency. Most restaurant hoods range from $150–$400 per service. Contact us for a free on-site estimate specific to your kitchen.' },
   { q: 'Do you work evenings and weekends?', a: 'Yes. Many of our services — especially hood cleaning and deep cleaning — are performed during off-hours to avoid disrupting your operations. We offer evening, overnight, and weekend scheduling.' },
   { q: 'Do you offer recurring service contracts?', a: 'Absolutely. Most of our customers are on recurring contracts — monthly janitorial, quarterly hood cleaning, weekly lawn care, and seasonal snow removal are common. Recurring contracts receive priority scheduling and discounted rates.' },
@@ -103,7 +103,7 @@ function HomePage({ onNav }) {
           <h2 style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 36, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em', marginBottom: 52 }}>Simple from start to finish</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 48 }}>
             {[
-              { n: '01', icon: 'phone', title: 'We respond quickly', desc: 'Reach out by phone, form, or chat. We respond quickly to find a time that works for you — usually within a few minutes by text.' },
+              { n: '01', icon: 'phone', title: 'We respond quickly', desc: 'Reach out by phone, form, or chat. We respond quickly to find a time that works for you. SMS text updates are only sent when you opt in.' },
               { n: '02', icon: 'clipboard', title: 'We gather the details', desc: 'We learn more about your specific project — size, scope, surface type, and any special requirements — so we can price it accurately.' },
               { n: '03', icon: 'file', title: 'We share a transparent quote', desc: 'You get a clear, no-obligation quote with everything spelled out. No surprises on the invoice — ever.' },
             ].map(step => (
@@ -175,7 +175,7 @@ function HomePage({ onNav }) {
         </div>
         {HOME_FAQS.map(f => <FAQItem key={f.q} q={f.q} a={f.a}/>)}
         <div style={{ textAlign: 'center', marginTop: 28 }}>
-          <p style={{ fontSize: 14, color: C.muted, marginBottom: 14 }}>Still have questions? Our AI assistant can help 24/7.</p>
+          <p style={{ fontSize: 14, color: C.muted, marginBottom: 14 }}>Still have questions? Our AI assistant can help 24/7 and will direct quote requests to the form. SMS text messages require separate opt-in.</p>
         </div>
       </section>
 
@@ -404,7 +404,7 @@ function GalleryPage({ onNav }) {
 // ── Contact / Quote Page ─────────────────────────────────────
 function ContactPage({ onNav }) {
   const [step, setStep] = React.useState(1);
-  const [form, setForm] = React.useState({ name: '', phone: '', email: '', company: '', services: [], address: '', notes: '', frequency: 'one-time' });
+  const [form, setForm] = React.useState({ name: '', phone: '', email: '', company: '', services: [], address: '', notes: '', frequency: 'one-time', smsConsent: false });
   const upd = (k, v) => setForm(f => ({ ...f, [k]: v }));
   const toggleSvc = s => upd('services', form.services.includes(s) ? form.services.filter(x => x !== s) : [...form.services, s]);
 
@@ -419,7 +419,7 @@ function ContactPage({ onNav }) {
         <div style={{ textAlign: 'center', marginBottom: 36 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: C.pink, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>Free estimate</div>
           <h1 style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 36, fontWeight: 800, color: C.charcoal, letterSpacing: '-0.02em', marginBottom: 10 }}>Request a quote</h1>
-          <p style={{ fontSize: 15, color: C.muted }}>We respond within 1 business hour. No obligation.</p>
+          <p style={{ fontSize: 15, color: C.muted }}>We respond within 1 business hour. By submitting a quote request, you agree that All Clean Solutions may contact you about that request by phone or email. SMS texts require the separate opt-in checkbox below.</p>
         </div>
 
         {/* Progress */}
@@ -442,6 +442,16 @@ function ContactPage({ onNav }) {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                 <div><label style={lbl}>Full name <span style={{ color: C.pink }}>*</span></label><input style={inp} placeholder="Jane Smith" value={form.name} onChange={e => upd('name', e.target.value)}/></div>
                 <div><label style={lbl}>Phone number <span style={{ color: C.pink }}>*</span></label><input style={inp} placeholder="(701) 555-0100" value={form.phone} onChange={e => upd('phone', e.target.value)}/></div>
+              </div>
+              <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginTop: 18, padding: 14, border: `1.5px solid ${C.border}`, borderRadius: 10, background: C.surface }}>
+                <input type="checkbox" checked={form.smsConsent} onChange={e => upd('smsConsent', e.target.checked)} style={{ marginTop: 3, width: 18, height: 18 }} />
+                <span style={{ fontSize: 13, color: C.slate, lineHeight: 1.55 }}>
+                  I agree to receive SMS from All Clean Solutions about quotes, scheduling, service updates, reminders, and support. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.
+                  <br />
+                  <strong>We only text customers who contact us, request a quote, book service, or give permission. We do not sell SMS consent or phone numbers.</strong>
+                </span>
+              </label>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 16 }}>
                 <div><label style={lbl}>Email address <span style={{ color: C.pink }}>*</span></label><input style={inp} type="email" placeholder="jane@business.com" value={form.email} onChange={e => upd('email', e.target.value)}/></div>
                 <div><label style={lbl}>Business / property name</label><input style={inp} placeholder="Acme Restaurant" value={form.company} onChange={e => upd('company', e.target.value)}/></div>
               </div>
@@ -513,8 +523,8 @@ function ContactPage({ onNav }) {
                 <Icon name="check-circle" size={32} color={C.green} sw={1.8}/>
               </div>
               <h2 style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 24, fontWeight: 800, color: C.charcoal, marginBottom: 8 }}>Request received!</h2>
-              <p style={{ fontSize: 15, color: C.slate, lineHeight: 1.7, marginBottom: 28 }}>Thanks{form.name ? `, ${form.name.split(' ')[0]}` : ''}! We'll follow up within 1 business hour at <strong>{form.email || 'your email'}</strong>.</p>
-              <Btn variant="navy" onClick={() => { setStep(1); setForm({ name: '', phone: '', email: '', company: '', services: [], address: '', notes: '', frequency: 'one-time' }); }} style={{ fontSize: 14 }}>Submit another request</Btn>
+              <p style={{ fontSize: 15, color: C.slate, lineHeight: 1.7, marginBottom: 28 }}>Thanks{form.name ? `, ${form.name.split(' ')[0]}` : ''}! We'll follow up within 1 business hour at <strong>{form.email || 'your email'}</strong>. SMS follow-up is {form.smsConsent ? 'approved by your checkbox consent.' : 'not enabled unless you opt in separately.'}</p>
+              <Btn variant="navy" onClick={() => { setStep(1); setForm({ name: '', phone: '', email: '', company: '', services: [], address: '', notes: '', frequency: 'one-time', smsConsent: false }); }} style={{ fontSize: 14 }}>Submit another request</Btn>
             </div>
           )}
         </div>
@@ -557,6 +567,13 @@ function PrivacyPage({ onNav }) {
         <Section title="How we use your information">
           We use your contact information to respond to quote requests, schedule and confirm services, send invoices and service reports, and communicate about your account. We do not sell your information to third parties. We may share information with service providers who help us operate our business (e.g., scheduling software, payment processing) under strict confidentiality agreements.
         </Section>
+        <Section title="SMS Communications">
+          When you provide your phone number and agree to receive text messages from All Clean Solutions, we may send messages related to quotes, scheduling, appointment reminders, service updates, technician arrival updates, invoices, payment reminders, review requests, and customer support.
+          <br /><br />
+          We do not sell, rent, or share SMS opt-in consent or phone numbers with third parties for their marketing purposes. SMS consent is used only for communication related to All Clean Solutions services.
+          <br /><br />
+          Message and data rates may apply. Message frequency varies. You can opt out at any time by replying STOP. For help, reply HELP or contact us at 701-587-1158.
+        </Section>
         <Section title="Data retention">
           We retain customer records for a minimum of 7 years to comply with business and tax record requirements. Service reports and photo documentation are retained as part of your service history and may be requested by you at any time.
         </Section>
@@ -598,6 +615,9 @@ function TermsPage({ onNav }) {
         </Section>
         <Section title="Payment terms">
           Payment is due upon completion of services unless a recurring contract specifies otherwise. We accept check, ACH transfer, and major credit cards. Invoices not paid within 30 days are subject to a 1.5% monthly late fee. Returned payments incur a $35 fee.
+        </Section>
+        <Section title="SMS Messaging Consent">
+          If you choose to receive text messages from All Clean Solutions, you consent to receive SMS messages related to quotes, scheduling, reminders, service updates, invoices, payment reminders, review requests, and customer support. Message and data rates may apply. Message frequency varies. Reply STOP to opt out. Reply HELP for help.
         </Section>
         <Section title="Cancellation policy">
           Cancellations made with less than 24 hours notice may incur a cancellation fee of up to 25% of the quoted service price. Recurring contract customers may cancel with 30 days written notice. We reserve the right to charge for mobilization costs on jobs cancelled after our crew has departed for your location.

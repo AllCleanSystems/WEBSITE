@@ -113,7 +113,7 @@ const { useState, useEffect, useRef, useCallback } = React;
 // ── AI Chat Overlay ──────────────────────────────────────────
 function ChatOverlay({ open, onClose }) {
   const [messages, setMessages] = useState([
-    { role: 'assistant', text: "Hi! I'm the All Clean Solutions AI assistant. I can help you with questions about our services, scheduling, pricing, or service areas in Bismarck, ND. How can I help you today?" }
+    { role: 'assistant', text: "Hi! I'm the All Clean Solutions AI assistant. I can help with services, scheduling, pricing, or service areas in Bismarck/Mandan. If you request a quote, All Clean Solutions may contact you about that request by phone or email. SMS texts are only sent if you separately opt in on the quote form. How can I help?" }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -140,7 +140,7 @@ function ChatOverlay({ open, onClose }) {
 
     try {
       const history = newMessages.map(m => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: m.text }));
-      const systemMsg = `You are the AI assistant for All Clean Solutions, a professional commercial cleaning company based in Bismarck, ND. Services: Hood & Exhaust Cleaning (NFPA-96 compliant), Carpet Cleaning, Window Cleaning, Pressure Washing, Snow Removal & Ice Management, Lawn Care & Grounds, Commercial Cleaning, Deep Cleaning, and Degreasing. Service area: Bismarck and surrounding 150 miles including Mandan, Dickinson, Jamestown, Minot, and more. Phone: (701) 587-1158. Email: info@acsbismarck.com. Licensed and insured. 24/7 emergency response. Free estimates available. Be helpful, professional, and concise. If asked to schedule, direct them to fill out the quote form or call.`;
+      const systemMsg = `You are the AI assistant for All Clean Solutions, a professional cleaning company based in Bismarck, ND. Services: Hood & Exhaust Cleaning, Carpet Cleaning, Window Cleaning, Pressure Washing, Snow Removal & Ice Management, Lawn Care & Grounds, Commercial Cleaning, Deep Cleaning, and Degreasing. Service area: Bismarck/Mandan and surrounding communities. Phone: (701) 587-1158. Email: info@acsbismarck.com. Free estimates available. Be helpful, professional, and concise. If asked to schedule or request a quote, direct them to fill out the quote form or call. Tell customers that submitting a quote request lets All Clean Solutions contact them about that request by phone or email, and SMS text messages are only sent if they separately opt in on the quote form. Do not say they will receive SMS without consent.`;
 
       const reply = await window.claude.complete({
         messages: [{ role: 'user', content: `[SYSTEM: ${systemMsg}]\n\nUser: ${text}` }]
@@ -226,7 +226,7 @@ function ChatOverlay({ open, onClose }) {
           <div style={{ padding: '0 20px 12px', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {['Hood cleaning pricing', 'Service areas', 'Schedule a service', 'Snow removal contracts'].map(q => (
               <button key={q} onClick={() => { setInput(q); setTimeout(() => sendMessage, 50); setMessages(prev => [...prev, { role: 'user', text: q }]); setInput(''); setLoading(true);
-                window.claude.complete({ messages: [{ role: 'user', content: `[SYSTEM: You are the AI assistant for All Clean Solutions, a commercial cleaning company in Bismarck ND. Be brief and helpful.]\n\nUser: ${q}` }] })
+                window.claude.complete({ messages: [{ role: 'user', content: `[SYSTEM: You are the AI assistant for All Clean Solutions, a commercial cleaning company in Bismarck/Mandan, ND. Be brief and helpful. If the customer asks to schedule or get a quote, tell them quote submission allows ACS to contact them about the request by phone or email, and SMS texts require separate opt-in on the quote form.]\n\nUser: ${q}` }] })
                   .then(r => { setMessages(prev => [...prev, { role: 'assistant', text: r }]); setLoading(false); })
                   .catch(() => { setMessages(prev => [...prev, { role: 'assistant', text: 'Sorry, try again or call (701) 587-1158.' }]); setLoading(false); });
               }} style={{ fontSize: 12, fontWeight: 500, color: C.navy, background: C.navyLight, border: `1px solid rgba(11,31,58,0.15)`, borderRadius: 20, padding: '5px 12px', cursor: 'pointer', fontFamily: 'Inter, sans-serif' }}>
