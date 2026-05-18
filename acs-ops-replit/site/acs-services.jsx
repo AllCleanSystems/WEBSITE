@@ -36,9 +36,9 @@ const SERVICE_DATA = {
     eyebrow: 'Carpet Cleaning',
     hero: 'Deep-clean carpets that look and smell fresh. Our hot-water extraction process removes embedded dirt, allergens, and stains — with fast-dry times that keep your business running.',
     tags: ['Hot-Water Extraction', 'Fast Dry', 'Commercial', 'Odor Removal'],
-    proofImage: 'uploads/carpet-cleaning-bismarck-can-you-see-the-difference.webp',
-    proofAlt: 'All Clean Solutions carpet cleaning in Bismarck ND showing a clear clean carpet difference',
-    proofCaption: 'Can You See the Difference?',
+    proofImage: 'uploads/carpet-cleaning-bismarck-before-after-rug.webp',
+    proofAlt: 'Before and after area rug carpet cleaning by All Clean Solutions in Bismarck Mandan North Dakota',
+    proofCaption: 'Before and after area rug cleaning by All Clean Solutions.',
     included: [
       'Pre-treatment of high-traffic lanes and stain spots',
       'Hot-water extraction (steam cleaning) — industry gold standard',

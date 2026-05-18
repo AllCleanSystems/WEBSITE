@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-const imageUrl = "https://acsbismarck.com/images/carpet-cleaning-bismarck-can-you-see-the-difference.webp";
+const imageUrl = "https://acsbismarck.com/images/carpet-cleaning-bismarck-before-after-rug.webp";
+const extractionImageUrl = "https://acsbismarck.com/images/carpet-cleaning-bismarck-can-you-see-the-difference.webp";
 
 export const metadata: Metadata = {
   title: "Carpet Cleaning in Bismarck, ND | All Clean Solutions",
@@ -19,9 +20,15 @@ export const metadata: Metadata = {
     images: [
       {
         url: imageUrl,
+        width: 2400,
+        height: 1500,
+        alt: "Before and after carpet cleaning by All Clean Solutions in Bismarck ND",
+      },
+      {
+        url: extractionImageUrl,
         width: 1800,
         height: 1575,
-        alt: "All Clean Solutions carpet cleaning in Bismarck ND showing a clear clean carpet difference",
+        alt: "All Clean Solutions carpet extraction cleaning in Bismarck ND showing visible results",
       },
     ],
   },
@@ -49,7 +56,7 @@ const serviceSchema = {
   areaServed: ["Bismarck ND", "Mandan ND", "Lincoln ND"],
   description:
     "Professional carpet cleaning for residential and commercial properties in the Bismarck/Mandan area.",
-  image: imageUrl,
+  image: [imageUrl, extractionImageUrl],
 };
 
 const carpetSteps = [
@@ -94,9 +101,29 @@ export default function CarpetCleaningPage() {
 
         <figure className="seoPhotoCard carpetHeroPhoto">
           <img
-            src="/images/carpet-cleaning-bismarck-can-you-see-the-difference.webp"
-            alt="All Clean Solutions carpet cleaning in Bismarck ND showing a clear clean carpet difference"
+            src="/images/carpet-cleaning-bismarck-before-after-rug.webp"
+            alt="Before and after area rug carpet cleaning by All Clean Solutions in Bismarck Mandan North Dakota"
             loading="eager"
+          />
+          <figcaption>Before and after area rug cleaning by All Clean Solutions.</figcaption>
+        </figure>
+      </section>
+
+      <section className="siteWrap beforeAfterSpotlight">
+        <div>
+          <p className="eyebrow">Before and after proof</p>
+          <h2>Area rug cleaning with a visible difference</h2>
+          <p>
+            This before and after carpet cleaning result shows how much cleaner a rug can look after a professional
+            cleaning process. All Clean Solutions helps Bismarck and Mandan customers with area rug cleaning, carpet
+            traffic lanes, spots, odor concerns, and commercial carpet maintenance.
+          </p>
+        </div>
+        <figure className="seoPhotoCard">
+          <img
+            src="/images/carpet-cleaning-bismarck-can-you-see-the-difference.webp"
+            alt="All Clean Solutions carpet extraction cleaning in Bismarck ND showing visible soil removal"
+            loading="lazy"
           />
           <figcaption>Can You See the Difference?</figcaption>
         </figure>

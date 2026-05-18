@@ -14,6 +14,14 @@ export const metadata: Metadata = {
       "Local cleaning services for Bismarck and Mandan properties, including carpet cleaning, hood cleaning, commercial cleaning, pressure washing, and more.",
     url: "https://acsbismarck.com/services",
     type: "website",
+    images: [
+      {
+        url: "https://acsbismarck.com/images/carpet-cleaning-bismarck-before-after-rug.webp",
+        width: 2400,
+        height: 1500,
+        alt: "Before and after carpet cleaning by All Clean Solutions in Bismarck ND",
+      },
+    ],
   },
 };
 
@@ -90,11 +98,11 @@ export default function ServicesPage() {
           </div>
           <figure className="seoPhotoCard">
             <img
-              src="/images/carpet-cleaning-bismarck-can-you-see-the-difference.webp"
-              alt="All Clean Solutions carpet cleaning in Bismarck ND showing a clear clean carpet difference"
+              src="/images/carpet-cleaning-bismarck-before-after-rug.webp"
+              alt="Before and after area rug carpet cleaning by All Clean Solutions in Bismarck Mandan North Dakota"
               loading="eager"
             />
-            <figcaption>Can You See the Difference?</figcaption>
+            <figcaption>Before and after area rug cleaning by All Clean Solutions.</figcaption>
           </figure>
         </section>
 
