@@ -36,6 +36,9 @@ const SERVICE_DATA = {
     eyebrow: 'Carpet Cleaning',
     hero: 'Deep-clean carpets that look and smell fresh. Our hot-water extraction process removes embedded dirt, allergens, and stains — with fast-dry times that keep your business running.',
     tags: ['Hot-Water Extraction', 'Fast Dry', 'Commercial', 'Odor Removal'],
+    proofImage: 'uploads/carpet-cleaning-bismarck-can-you-see-the-difference.webp',
+    proofAlt: 'All Clean Solutions carpet cleaning in Bismarck ND showing a clear clean carpet difference',
+    proofCaption: 'Can You See the Difference?',
     included: [
       'Pre-treatment of high-traffic lanes and stain spots',
       'Hot-water extraction (steam cleaning) — industry gold standard',
@@ -336,6 +339,15 @@ function ServiceDetailPage({ serviceKey, onNav }) {
           {svc.tags.map(t => <span key={t} style={{ background: C.navyLight, color: C.navy, fontSize: 12, fontWeight: 600, padding: '5px 12px', borderRadius: 6 }}>{t}</span>)}
         </div>
       </div>
+
+      {svc.proofImage && (
+        <section style={{ background: '#fff', padding: '34px 40px 0' }}>
+          <figure style={{ maxWidth: 980, margin: '0 auto', borderRadius: 18, overflow: 'hidden', boxShadow: '0 18px 38px rgba(11,31,58,0.18)', background: C.navy }}>
+            <img src={svc.proofImage} alt={svc.proofAlt} loading="eager" style={{ display: 'block', width: '100%', aspectRatio: '16 / 10', objectFit: 'cover' }} />
+            <figcaption style={{ padding: '13px 16px', textAlign: 'center', color: '#fff', fontWeight: 800, fontSize: 18, background: 'linear-gradient(135deg, #0b1f3a, #123765)' }}>{svc.proofCaption}</figcaption>
+          </figure>
+        </section>
+      )}
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 40px', display: 'grid', gridTemplateColumns: '1fr 360px', gap: 48 }}>
         {/* Main content */}
