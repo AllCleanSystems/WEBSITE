@@ -45,7 +45,7 @@ export function QuoteRequestForm() {
         return;
       }
       setForm(initialState);
-      setStatus("Success. Your request is in our app and sent to Zoho CRM.");
+      setStatus("Success. Your request was sent to All Clean Solutions.");
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Network error");
     } finally {
@@ -84,8 +84,12 @@ export function QuoteRequestForm() {
           <option>Commercial Cleaning</option>
           <option>Restaurant Hood Cleaning</option>
           <option>Carpet Cleaning</option>
+          <option>Air Duct Cleaning</option>
+          <option>Floor Cleaning</option>
+          <option>Window Cleaning</option>
           <option>Pressure Washing</option>
           <option>Snow Removal</option>
+          <option>Lawn Care</option>
           <option>Other</option>
         </select>
         <textarea
